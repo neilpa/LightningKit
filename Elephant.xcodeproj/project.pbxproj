@@ -53,8 +53,8 @@
 		D87666461B76660D00027E54 = {
 			isa = PBXGroup;
 			children = (
-				D87666521B76660D00027E54 /* Elephant */,
-				D876665F1B76660D00027E54 /* ElephantTests */,
+				D87666521B76660D00027E54 /* Source */,
+				D876665F1B76660D00027E54 /* Tests */,
 				D87666511B76660D00027E54 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,13 +68,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D87666521B76660D00027E54 /* Elephant */ = {
+		D87666521B76660D00027E54 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				D87666551B76660D00027E54 /* Elephant.h */,
 				D87666531B76660D00027E54 /* Supporting Files */,
 			);
-			path = Elephant;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		D87666531B76660D00027E54 /* Supporting Files */ = {
@@ -85,13 +85,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D876665F1B76660D00027E54 /* ElephantTests */ = {
+		D876665F1B76660D00027E54 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D87666601B76660D00027E54 /* ElephantTests.swift */,
 				D87666621B76660D00027E54 /* Info.plist */,
 			);
-			path = ElephantTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,10 +319,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Elephant/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -338,10 +338,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Elephant/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "@rpath";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -354,7 +354,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ElephantTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.ElephantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -370,7 +370,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = ElephantTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.ElephantTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
