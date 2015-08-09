@@ -10,7 +10,7 @@
 		D87666561B76660D00027E54 /* Elephant.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* Elephant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* Elephant.framework */; };
 		D87666761B76CE0C00027E54 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666751B76CE0C00027E54 /* Value.swift */; };
-		D876667A1B76D24100027E54 /* Fact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666791B76D24100027E54 /* Fact.swift */; };
+		D876667A1B76D24100027E54 /* Datom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666791B76D24100027E54 /* Datom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,7 +30,7 @@
 		D876665B1B76660D00027E54 /* ElephantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElephantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87666621B76660D00027E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87666751B76CE0C00027E54 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
-		D87666791B76D24100027E54 /* Fact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fact.swift; sourceTree = "<group>"; };
+		D87666791B76D24100027E54 /* Datom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +73,8 @@
 		D87666521B76660D00027E54 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D87666791B76D24100027E54 /* Datom.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
-				D87666791B76D24100027E54 /* Fact.swift */,
 				D87666751B76CE0C00027E54 /* Value.swift */,
 				D87666541B76660D00027E54 /* Info.plist */,
 			);
@@ -198,7 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87666761B76CE0C00027E54 /* Value.swift in Sources */,
-				D876667A1B76D24100027E54 /* Fact.swift in Sources */,
+				D876667A1B76D24100027E54 /* Datom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

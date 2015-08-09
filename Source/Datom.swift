@@ -3,8 +3,8 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-/// Minimal representation of novelty about some entity.
-public struct Fact {
+/// An immutable, point-in-time fact.
+public struct Datom {
     /// The entity identifier owning this fact.
     public let entity: Int64
 
