@@ -5,18 +5,18 @@
 
 /// An immutable, point-in-time fact.
 public struct Datom {
-    /// The entity identifier owning this fact.
+    /// The entity identifier of the "subject" of the datom.
     public let entity: Int64
 
-    /// The attribute of the fact (e.g. the key).
-    public let attribute: String
+    /// The entity identifier of the attribute of the datom.
+    public let attribute: Int64
 
-    /// The value of the fact.
+    /// The value associated with the attribute of the datom.
     public let value: Value
 
-    /// The transaction identifier that generated this fact.
+    /// The transaction identifier that committed the datom.
     public let transaction: Int64
 
-    /// Whether the fact was asserted or retracted.
+    /// Whether the datom is an assertion or retraction.
     public let added: Bool
 }
