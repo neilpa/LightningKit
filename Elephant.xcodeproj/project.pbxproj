@@ -12,6 +12,8 @@
 		D87666761B76CE0C00027E54 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666751B76CE0C00027E54 /* Value.swift */; };
 		D876667A1B76D24100027E54 /* Datom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666791B76D24100027E54 /* Datom.swift */; };
 		D87666821B76E2AC00027E54 /* Attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666811B76E2AC00027E54 /* Attribute.swift */; };
+		D87666861B76E8E300027E54 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666851B76E8E300027E54 /* Entity.swift */; };
+		D87666881B76EF2C00027E54 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666871B76EF2C00027E54 /* Database.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		D87666751B76CE0C00027E54 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		D87666791B76D24100027E54 /* Datom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datom.swift; sourceTree = "<group>"; };
 		D87666811B76E2AC00027E54 /* Attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attribute.swift; sourceTree = "<group>"; };
+		D87666851B76E8E300027E54 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		D87666871B76EF2C00027E54 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,10 @@
 			isa = PBXGroup;
 			children = (
 				D87666811B76E2AC00027E54 /* Attribute.swift */,
+				D87666871B76EF2C00027E54 /* Database.swift */,
 				D87666791B76D24100027E54 /* Datom.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
+				D87666851B76E8E300027E54 /* Entity.swift */,
 				D87666751B76CE0C00027E54 /* Value.swift */,
 				D87666541B76660D00027E54 /* Info.plist */,
 			);
@@ -200,8 +206,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D87666861B76E8E300027E54 /* Entity.swift in Sources */,
 				D87666821B76E2AC00027E54 /* Attribute.swift in Sources */,
 				D87666761B76CE0C00027E54 /* Value.swift in Sources */,
+				D87666881B76EF2C00027E54 /* Database.swift in Sources */,
 				D876667A1B76D24100027E54 /* Datom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
