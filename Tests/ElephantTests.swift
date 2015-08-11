@@ -9,8 +9,7 @@ import Elephant
 class ElephantTests: XCTestCase {
 
     func testConnection() {
-        let connection = Connection.connect(":memory:").single()?.value
-        XCTAssertNotNil(connection)
+        XCTAssertNotNil(Connection.connect(":memory:").value)
     }
 
 }

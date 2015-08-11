@@ -3,7 +3,7 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import ReactiveCocoa
+import Result
 import sqlite3
 
 /// A database connection providing the current state and allowing updates.
@@ -14,17 +14,14 @@ public final class Connection {
 
     /// Creates a new connection to db at `path`. This this will create
     /// a new database if it doesn't already exist.
-    public static func connect(path: String) -> SignalProducer<Connection, ElephantError> {
-        return SignalProducer { observer, disposable in
-            var handle: COpaquePointer = nil
+    public static func connect(path: String) -> Result<Connection, ElephantError> {
+        var handle: COpaquePointer = nil
 
-            let code = sqlite3_open(path, &handle)
-            if code == SQLITE_OK {
-                sendNext(observer, Connection(handle: handle))
-                sendCompleted(observer)
-            } else {
-                sendError(observer, .SqliteError(code))
-            }
+        let code = sqlite3_open(path, &handle)
+        if code == SQLITE_OK {
+            return .Success(Connection(handle: handle))
+        } else {
+            return .Failure(.SqliteError(code))
         }
     }
 
