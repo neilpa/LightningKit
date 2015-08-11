@@ -8,8 +8,9 @@ import Elephant
 
 class ElephantTests: XCTestCase {
 
-    func testExample() {
-        Peer.connect(":memory:")
+    func testConnection() {
+        let connection = Connection.connect(":memory:").single()?.value
+        XCTAssertNotNil(connection)
     }
 
 }

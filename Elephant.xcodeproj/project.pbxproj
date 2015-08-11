@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D807928E1B799537002D424A /* Peer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807928D1B799537002D424A /* Peer.swift */; };
 		D80792901B799571002D424A /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807928F1B799571002D424A /* Connection.swift */; };
 		D80792931B799A41002D424A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; };
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
@@ -16,6 +15,9 @@
 		D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */; };
 		D826D9821B79BF0800BC6D32 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = D826D9811B79BF0800BC6D32 /* sqlite3.h */; };
 		D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* ElephantTests.swift */; };
+		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
+		D826D98D1B79C85F00BC6D32 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; };
+		D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D87666561B76660D00027E54 /* Elephant.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* Elephant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* Elephant.framework */; };
 		D87666761B76CE0C00027E54 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666751B76CE0C00027E54 /* Value.swift */; };
@@ -50,7 +52,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D807928D1B799537002D424A /* Peer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Peer.swift; sourceTree = "<group>"; };
 		D807928F1B799571002D424A /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D80792911B799A41002D424A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/Mac/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		D80792921B799A41002D424A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
@@ -58,6 +59,7 @@
 		D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		D826D9811B79BF0800BC6D32 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = usr/include/sqlite3.h; sourceTree = SDKROOT; };
 		D826D9891B79C3A100BC6D32 /* ElephantTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElephantTests.swift; sourceTree = "<group>"; };
+		D826D98B1B79C75900BC6D32 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D87666501B76660D00027E54 /* Elephant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elephant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87666541B76660D00027E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87666551B76660D00027E54 /* Elephant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Elephant.h; sourceTree = "<group>"; };
@@ -85,6 +87,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D826D98D1B79C85F00BC6D32 /* ReactiveCocoa.framework in Frameworks */,
+				D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */,
 				D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,8 +132,8 @@
 				D807928F1B799571002D424A /* Connection.swift */,
 				D87666871B76EF2C00027E54 /* Database.swift */,
 				D87666791B76D24100027E54 /* Datom.swift */,
+				D826D98B1B79C75900BC6D32 /* Error.swift */,
 				D87666851B76E8E300027E54 /* Entity.swift */,
-				D807928D1B799537002D424A /* Peer.swift */,
 				D87666751B76CE0C00027E54 /* Value.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
 				D826D9811B79BF0800BC6D32 /* sqlite3.h */,
@@ -250,10 +254,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D826D98C1B79C75900BC6D32 /* Error.swift in Sources */,
 				D87666861B76E8E300027E54 /* Entity.swift in Sources */,
 				D87666821B76E2AC00027E54 /* Attribute.swift in Sources */,
 				D87666761B76CE0C00027E54 /* Value.swift in Sources */,
-				D807928E1B799537002D424A /* Peer.swift in Sources */,
 				D87666881B76EF2C00027E54 /* Database.swift in Sources */,
 				D876667A1B76D24100027E54 /* Datom.swift in Sources */,
 				D80792901B799571002D424A /* Connection.swift in Sources */,
@@ -419,6 +423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
@@ -437,6 +442,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
