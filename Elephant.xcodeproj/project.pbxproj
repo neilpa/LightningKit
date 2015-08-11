@@ -13,6 +13,7 @@
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D80792961B799A7A002D424A /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D80792971B799A7A002D424A /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */; };
 		D87666561B76660D00027E54 /* Elephant.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* Elephant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* Elephant.framework */; };
 		D87666761B76CE0C00027E54 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87666751B76CE0C00027E54 /* Value.swift */; };
@@ -51,6 +52,8 @@
 		D807928F1B799571002D424A /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D80792911B799A41002D424A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/Mac/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		D80792921B799A41002D424A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
+		D826D97E1B79BAE100BC6D32 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		D87666501B76660D00027E54 /* Elephant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elephant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87666541B76660D00027E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87666551B76660D00027E54 /* Elephant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Elephant.h; sourceTree = "<group>"; };
@@ -68,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */,
 				D80792931B799A41002D424A /* ReactiveCocoa.framework in Frameworks */,
 				D80792941B799A41002D424A /* Result.framework in Frameworks */,
 			);
@@ -87,6 +91,7 @@
 		D80792981B799A89002D424A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */,
 				D80792911B799A41002D424A /* ReactiveCocoa.framework */,
 				D80792921B799A41002D424A /* Result.framework */,
 			);
@@ -124,6 +129,7 @@
 				D807928D1B799537002D424A /* Peer.swift */,
 				D87666751B76CE0C00027E54 /* Value.swift */,
 				D87666541B76660D00027E54 /* Info.plist */,
+				D826D97E1B79BAE100BC6D32 /* module.modulemap */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -369,6 +375,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -392,6 +399,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 			};
 			name = Release;
 		};

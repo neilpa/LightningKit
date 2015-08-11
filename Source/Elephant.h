@@ -8,4 +8,3 @@ extern double ElephantVersionNumber;
 
 /// Project version string for Elephant.
 extern const unsigned char ElephantVersionString[];
-
