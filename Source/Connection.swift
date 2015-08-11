@@ -10,7 +10,7 @@ import sqlite3
 public final class Connection {
 
     /// Connection to the underlying sqlite db.
-    private var handle: COpaquePointer = nil;
+    private let handle: COpaquePointer
 
     /// Creates a new connection to db at `path`. This this will create
     /// a new database if it doesn't already exist.
