@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D80792901B799571002D424A /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807928F1B799571002D424A /* Connection.swift */; };
-		D80792931B799A41002D424A /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; };
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D80792961B799A7A002D424A /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D80792971B799A7A002D424A /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -16,7 +15,6 @@
 		D826D9821B79BF0800BC6D32 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = D826D9811B79BF0800BC6D32 /* sqlite3.h */; };
 		D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* ElephantTests.swift */; };
 		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
-		D826D98D1B79C85F00BC6D32 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; };
 		D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D87666561B76660D00027E54 /* Elephant.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* Elephant.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* Elephant.framework */; };
@@ -78,7 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */,
-				D80792931B799A41002D424A /* ReactiveCocoa.framework in Frameworks */,
 				D80792941B799A41002D424A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D826D98D1B79C85F00BC6D32 /* ReactiveCocoa.framework in Frameworks */,
 				D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */,
 				D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */,
 			);

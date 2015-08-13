@@ -5,6 +5,7 @@
 
 import Result
 import sqlite3
+import Foundation
 
 /// A database connection providing the current state and allowing updates.
 public final class Connection {
@@ -16,13 +17,19 @@ public final class Connection {
     /// a new database if it doesn't already exist.
     public static func connect(path: String) -> Result<Connection, ElephantError> {
         var handle: COpaquePointer = nil
-
-        let code = sqlite3_open(path, &handle)
-        if code == SQLITE_OK {
-            return .Success(Connection(handle: handle))
-        } else {
-            return .Failure(.SqliteError(code))
+        var ret = sqlite3_open(path, &handle)
+        guard ret == SQLITE_OK else {
+            return .Failure(.SqliteError(ret))
         }
+
+        var ptr: UnsafeMutablePointer<Int8> = nil
+        ret = sqlite3_exec(handle, schema, nil, nil, &ptr)
+        guard ret == SQLITE_OK else {
+            print(NSString(UTF8String: ptr))
+            return .Failure(.SqliteError(ret))
+        }
+
+        return .Success(Connection(handle: handle))
     }
 
     /// Wraps a sqlite connection
@@ -43,4 +50,13 @@ public final class Connection {
     /// Apply updates to the database.
     public func transact() {
     }
+
+    private static let schema =
+        "CREATE TABLE IF NOT EXISTS facts(" +
+            "entity_id INTEGER PRIMARY KEY," +
+            "attribute STRING NOT NULL," + // TODO attribute_id (and attrs in DB)
+            "value BLOB," +
+            "transaction_id INTEGER NOT NULL," +
+            "added INTEGER NOT NULL" +
+        ");"
 }
