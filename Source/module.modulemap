@@ -2,3 +2,8 @@ module sqlite3 [system] {
     header "/usr/include/sqlite3.h"
     export *
 }
+
+module lmdb [system] {
+    header "/usr/local/Cellar/lmdb/0.9.14/include/lmdb.h"
+    export *
+}
