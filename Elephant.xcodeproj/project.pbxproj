@@ -7,12 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D80792901B799571002D424A /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D807928F1B799571002D424A /* Connection.swift */; };
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D80792961B799A7A002D424A /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D80792971B799A7A002D424A /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */; };
-		D826D9821B79BF0800BC6D32 /* sqlite3.h in Headers */ = {isa = PBXBuildFile; fileRef = D826D9811B79BF0800BC6D32 /* sqlite3.h */; };
 		D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* ElephantTests.swift */; };
 		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
 		D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
@@ -52,12 +49,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D807928F1B799571002D424A /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D80792911B799A41002D424A /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveCocoa.framework; path = Carthage/Build/Mac/ReactiveCocoa.framework; sourceTree = "<group>"; };
 		D80792921B799A41002D424A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		D826D97E1B79BAE100BC6D32 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
-		D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		D826D9811B79BF0800BC6D32 /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sqlite3.h; path = usr/include/sqlite3.h; sourceTree = SDKROOT; };
 		D826D9891B79C3A100BC6D32 /* ElephantTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElephantTests.swift; sourceTree = "<group>"; };
 		D826D98B1B79C75900BC6D32 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D87666501B76660D00027E54 /* Elephant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elephant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +73,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CD94261B7DA55E00086B23 /* liblmdb.dylib in Frameworks */,
-				D826D9801B79BDAE00BC6D32 /* libsqlite3.tbd in Frameworks */,
 				D80792941B799A41002D424A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,7 +94,6 @@
 			isa = PBXGroup;
 			children = (
 				D8CD94251B7DA55E00086B23 /* liblmdb.dylib */,
-				D826D97F1B79BDAE00BC6D32 /* libsqlite3.tbd */,
 				D80792911B799A41002D424A /* ReactiveCocoa.framework */,
 				D80792921B799A41002D424A /* Result.framework */,
 			);
@@ -131,14 +123,12 @@
 			isa = PBXGroup;
 			children = (
 				D87666811B76E2AC00027E54 /* Attribute.swift */,
-				D807928F1B799571002D424A /* Connection.swift */,
 				D87666871B76EF2C00027E54 /* Database.swift */,
 				D87666791B76D24100027E54 /* Datom.swift */,
 				D826D98B1B79C75900BC6D32 /* Error.swift */,
 				D87666851B76E8E300027E54 /* Entity.swift */,
 				D87666751B76CE0C00027E54 /* Value.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
-				D826D9811B79BF0800BC6D32 /* sqlite3.h */,
 				D87666541B76660D00027E54 /* Info.plist */,
 				D826D97E1B79BAE100BC6D32 /* module.modulemap */,
 			);
@@ -161,7 +151,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D826D9821B79BF0800BC6D32 /* sqlite3.h in Headers */,
 				D87666561B76660D00027E54 /* Elephant.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,7 +251,6 @@
 				D87666761B76CE0C00027E54 /* Value.swift in Sources */,
 				D87666881B76EF2C00027E54 /* Database.swift in Sources */,
 				D876667A1B76D24100027E54 /* Datom.swift in Sources */,
-				D80792901B799571002D424A /* Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
