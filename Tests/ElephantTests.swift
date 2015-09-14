@@ -29,7 +29,7 @@ class ElephantTests: XCTestCase {
         let info = env.info()
         let stat = env.stat()
 
-//
+        
 //        var txn: COpaquePointer = nil
 //        ret = mdb_txn_begin(env, nil, 0, &txn)
 //        XCTAssert(ret == 0)

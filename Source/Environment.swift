@@ -50,7 +50,8 @@ public final class Environment {
     /// The directory path to this environment.
     public let path: String
 
-    private let env: COpaquePointer
+    /// The lmdb environment handle.
+    internal let env: COpaquePointer
 
     private init(path: String, env: COpaquePointer) {
         self.path = path
