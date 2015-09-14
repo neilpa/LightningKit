@@ -20,35 +20,31 @@ class ElephantTests: XCTestCase {
     }
 
     func testConnection() {
-        let result = Environment.open(path)
-        guard case let .Success(env) = result else {
+        guard case let .Success(env) = Environment.open(path) else {
             XCTAssert(false)
             return
         }
 
-        let info = env.info()
-        let stat = env.stat()
+        guard case let .Success(txn) = Transaction.begin(env, readOnly: false) else {
+            XCTAssert(false)
+            return
+        }
 
-        
-//        var txn: COpaquePointer = nil
-//        ret = mdb_txn_begin(env, nil, 0, &txn)
-//        XCTAssert(ret == 0)
-//
-//        var dbi = MDB_dbi()
-//        ret = mdb_dbi_open(txn, nil, 0, &dbi)
-//        XCTAssert(ret == 0)
-//
-//        var one = 1
-//        var key = MDB_val(mv_size: sizeof(Int), mv_data: &one)
-//        var two = 2
-//        var put = MDB_val(mv_size: sizeof(Int), mv_data: &two)
-//        mdb_put(txn, dbi, &key, &put, 0)
-//        XCTAssert(ret == 0)
-//
-//        ret = mdb_txn_commit(txn)
-//        XCTAssert(ret == 0)
-//
-//
+        guard case let .Success(dbi) = Database.open(txn) else {
+            XCTAssert(false)
+            return
+        }
+
+        guard case .Success = dbi.put(key: 2, value: 5) else {
+            XCTAssert(false)
+            return
+        }
+
+        guard case .Success = txn.commit() else {
+            XCTAssert(false)
+            return
+        }
+
 //        ret = mdb_txn_begin(env, nil, 0, &txn)
 //        XCTAssert(ret == 0)
 //

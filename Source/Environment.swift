@@ -30,7 +30,7 @@ public final class Environment {
             return .Failure(.LMDBError(ret))
         }
 
-        return .Success(self.init(path: path, env: nil))
+        return .Success(self.init(path: path, env: env))
     }
 
     /// Wrapper for `mdb_env_stat`.
