@@ -25,42 +25,44 @@ class ElephantTests: XCTestCase {
             return
         }
 
-        guard case let .Success(txn) = Transaction.begin(env, readOnly: false) else {
-            XCTAssert(false)
-            return
+        do {
+            guard case let .Success(txn) = Transaction.begin(env) else {
+                XCTAssert(false)
+                return
+            }
+            guard case let .Success(dbi) = Database.open(txn) else {
+                XCTAssert(false)
+                return
+            }
+            guard case .Success = dbi.put(key: 2, value: 5) else {
+                XCTAssert(false)
+                return
+            }
+            guard case .Success = txn.commit() else {
+                XCTAssert(false)
+                return
+            }
         }
 
-        guard case let .Success(dbi) = Database.open(txn) else {
-            XCTAssert(false)
-            return
-        }
+        do {
+            guard case let .Success(txn) = Transaction.begin(env, readOnly: true) else {
+                XCTAssert(false)
+                return
+            }
+            guard case let .Success(dbi) = Database.open(txn) else {
+                XCTAssert(false)
+                return
+            }
+            guard case let .Success(value) = dbi.get(2) else {
+                XCTAssert(false)
+                return
+            }
+            XCTAssert(value == 5)
 
-        guard case .Success = dbi.put(key: 2, value: 5) else {
-            XCTAssert(false)
-            return
+            guard case .Success = txn.commit() else {
+                XCTAssert(false)
+                return
+            }
         }
-
-        guard case .Success = txn.commit() else {
-            XCTAssert(false)
-            return
-        }
-
-//        ret = mdb_txn_begin(env, nil, 0, &txn)
-//        XCTAssert(ret == 0)
-//
-//        ret = mdb_dbi_open(txn, nil, 0, &dbi)
-//        XCTAssert(ret == 0)
-//
-//        var val = -1
-//        var get = MDB_val(mv_size: sizeof(Int), mv_data: &val)
-//        mdb_get(txn, dbi, &key, &get)
-//        XCTAssert(ret == 0)
-//        print(NSString(format: "%s", get.mv_data))
-//
-//        ret = mdb_txn_commit(txn)
-//        XCTAssert(ret == 0)
-//
-//
-//        mdb_env_close(env)
     }
 }

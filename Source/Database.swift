@@ -39,4 +39,17 @@ public struct Database {
 
         return .Success()
     }
+
+    public func get(var key: Int) -> Result<Int, ElephantError> {
+        var keyData = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+        var valueData = MDB_val()
+
+        let ret = mdb_get(txn, dbi, &keyData, &valueData)
+        guard ret == 0 else {
+            return .Failure(.LMDBError(ret))
+        }
+
+        // TODO Need some safeguards here...
+        return .Success(UnsafeMutablePointer<Int>(valueData.mv_data).memory)
+    }
 }
