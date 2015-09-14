@@ -28,6 +28,7 @@ public struct Database {
         return .Success(Database(txn: txn, dbi: dbi))
     }
 
+    /// Associates `data` with the provided `key`.
     public func put(var key key: Int, var data: Int) -> Result<(), ElephantError> {
         var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
         var dataVal = MDB_val(mv_size: sizeof(Int), mv_data: &data)
@@ -40,6 +41,7 @@ public struct Database {
         return .Success()
     }
 
+    /// Retuns the data associated with the provided `key`.
     public func get(var key: Int) -> Result<Int, ElephantError> {
         var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
         var dataVal = MDB_val()

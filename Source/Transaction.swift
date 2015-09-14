@@ -15,7 +15,7 @@ public struct Transaction {
         var handle: COpaquePointer = nil
         let flags = readOnly ? UInt32(MDB_RDONLY) : 0
 
-        let ret = mdb_txn_begin(environment.env, parent?.handle ?? nil, flags, &handle)
+        let ret = mdb_txn_begin(environment.handle, parent?.handle ?? nil, flags, &handle)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
@@ -23,6 +23,7 @@ public struct Transaction {
         return .Success(self.init(handle: handle))
     }
 
+    /// Commits changes executed during this transaction.
     public func commit() -> Result<(), ElephantError> {
         let ret = mdb_txn_commit(handle)
         guard ret == 0 else {
@@ -32,6 +33,7 @@ public struct Transaction {
         return .Success()
     }
 
+    /// Aborts any changes executed during this transaction.
     public func abort() {
         mdb_txn_abort(handle)
     }
