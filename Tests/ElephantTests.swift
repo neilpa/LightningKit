@@ -5,8 +5,7 @@
 
 import XCTest
 import Elephant
-
-import lmdb
+import Result
 
 class ElephantTests: XCTestCase {
 
@@ -14,67 +13,63 @@ class ElephantTests: XCTestCase {
     let fs = NSFileManager.defaultManager()
 
     override func setUp() {
-        try! fs.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
     }
 
     override func tearDown() {
-        try! fs.removeItemAtPath(path)
+//        try! fs.removeItemAtPath(path)
     }
 
     func testConnection() {
-        var env: COpaquePointer = nil
-        var ret = mdb_env_create(&env)
-        XCTAssert(ret == 0)
-        XCTAssert(env != nil)
+        let result = Environment.open(path)
+        guard case let .Success(env) = result else {
+            // TODO
+            XCTAssert(false)
+            return
+        }
 
-        ret = mdb_env_open(env, path, 0, 0o644)
-        XCTAssert(ret == 0)
-
-
-        var stat = MDB_stat()
-        ret = mdb_env_stat(env, &stat)
-        XCTAssert(ret == 0)
-
-        var info = MDB_envinfo()
-        ret = mdb_env_info(env, &info)
-        XCTAssert(ret == 0)
-
-
-        var txn: COpaquePointer = nil
-        ret = mdb_txn_begin(env, nil, 0, &txn)
-        XCTAssert(ret == 0)
-
-        var dbi = MDB_dbi()
-        ret = mdb_dbi_open(txn, nil, 0, &dbi)
-        XCTAssert(ret == 0)
-
-        var one = 1
-        var key = MDB_val(mv_size: sizeof(Int), mv_data: &one)
-        var two = 2
-        var put = MDB_val(mv_size: sizeof(Int), mv_data: &two)
-        mdb_put(txn, dbi, &key, &put, 0)
-        XCTAssert(ret == 0)
-
-        ret = mdb_txn_commit(txn)
-        XCTAssert(ret == 0)
-
-
-        ret = mdb_txn_begin(env, nil, 0, &txn)
-        XCTAssert(ret == 0)
-
-        ret = mdb_dbi_open(txn, nil, 0, &dbi)
-        XCTAssert(ret == 0)
-
-        var val = -1
-        var get = MDB_val(mv_size: sizeof(Int), mv_data: &val)
-        mdb_get(txn, dbi, &key, &get)
-        XCTAssert(ret == 0)
-        print(NSString(format: "%s", get.mv_data))
-
-        ret = mdb_txn_commit(txn)
-        XCTAssert(ret == 0)
-
-
-        mdb_env_close(env)
+//        var stat = MDB_stat()
+//        ret = mdb_env_stat(env, &stat)
+//        XCTAssert(ret == 0)
+//
+//        var info = MDB_envinfo()
+//        ret = mdb_env_info(env, &info)
+//        XCTAssert(ret == 0)
+//
+//        var txn: COpaquePointer = nil
+//        ret = mdb_txn_begin(env, nil, 0, &txn)
+//        XCTAssert(ret == 0)
+//
+//        var dbi = MDB_dbi()
+//        ret = mdb_dbi_open(txn, nil, 0, &dbi)
+//        XCTAssert(ret == 0)
+//
+//        var one = 1
+//        var key = MDB_val(mv_size: sizeof(Int), mv_data: &one)
+//        var two = 2
+//        var put = MDB_val(mv_size: sizeof(Int), mv_data: &two)
+//        mdb_put(txn, dbi, &key, &put, 0)
+//        XCTAssert(ret == 0)
+//
+//        ret = mdb_txn_commit(txn)
+//        XCTAssert(ret == 0)
+//
+//
+//        ret = mdb_txn_begin(env, nil, 0, &txn)
+//        XCTAssert(ret == 0)
+//
+//        ret = mdb_dbi_open(txn, nil, 0, &dbi)
+//        XCTAssert(ret == 0)
+//
+//        var val = -1
+//        var get = MDB_val(mv_size: sizeof(Int), mv_data: &val)
+//        mdb_get(txn, dbi, &key, &get)
+//        XCTAssert(ret == 0)
+//        print(NSString(format: "%s", get.mv_data))
+//
+//        ret = mdb_txn_commit(txn)
+//        XCTAssert(ret == 0)
+//
+//
+//        mdb_env_close(env)
     }
 }

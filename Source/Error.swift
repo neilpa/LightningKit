@@ -5,6 +5,9 @@
 
 /// Errors that can arise.
 public enum ElephantError: ErrorType {
+    /// Failed to create a directory.
+    case CreateDirectoryError(ErrorType)
+
     /// Wraps an underlying lmdb error code.
     case LMDBError(Int32)
 }
