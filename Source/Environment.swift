@@ -33,7 +33,23 @@ public final class Environment {
         return .Success(self.init(path: path, env: nil))
     }
 
+    /// Wrapper for `mdb_env_stat`.
+    public func stat() -> MDB_stat {
+        var stat = MDB_stat()
+        mdb_env_stat(env, &stat)
+        return stat
+    }
+
+    /// Wrapper for `mdb_env_info`.
+    public func info() -> MDB_envinfo {
+        var info = MDB_envinfo()
+        mdb_env_info(env, &info)
+        return info
+    }
+
+    /// The directory path to this environment.
     public let path: String
+
     private let env: COpaquePointer
 
     private init(path: String, env: COpaquePointer) {

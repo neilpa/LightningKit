@@ -22,18 +22,13 @@ class ElephantTests: XCTestCase {
     func testConnection() {
         let result = Environment.open(path)
         guard case let .Success(env) = result else {
-            // TODO
             XCTAssert(false)
             return
         }
 
-//        var stat = MDB_stat()
-//        ret = mdb_env_stat(env, &stat)
-//        XCTAssert(ret == 0)
-//
-//        var info = MDB_envinfo()
-//        ret = mdb_env_info(env, &info)
-//        XCTAssert(ret == 0)
+        let info = env.info()
+        let stat = env.stat()
+
 //
 //        var txn: COpaquePointer = nil
 //        ret = mdb_txn_begin(env, nil, 0, &txn)
