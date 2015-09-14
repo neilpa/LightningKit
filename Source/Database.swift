@@ -28,7 +28,8 @@ public struct Database {
         return .Success(Database(txn: txn, dbi: dbi))
     }
 
-    /// Associates `data` with the provided `key`.
+    /// Associates `data` with the provided `key`. This is a typed wrapper
+    /// for `mdb_put`.
     public func put(var key key: Int, var data: Int) -> Result<(), ElephantError> {
         var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
         var dataVal = MDB_val(mv_size: sizeof(Int), mv_data: &data)
@@ -41,7 +42,8 @@ public struct Database {
         return .Success()
     }
 
-    /// Retuns the data associated with the provided `key`.
+    /// Retuns the data associated with the provided `key`. This is a typed
+    /// wrapper for `mdb_get`.
     public func get(var key: Int) -> Result<Int, ElephantError> {
         var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
         var dataVal = MDB_val()
@@ -53,5 +55,19 @@ public struct Database {
 
         // TODO Need some safeguards here...
         return .Success(UnsafeMutablePointer<Int>(dataVal.mv_data).memory)
+    }
+
+    /// Deletes the `key` and associated `data` from the database. This is a
+    /// typed wrapper for `mdb_del`.
+    public func del(var key: Int) -> Result<(), ElephantError> {
+        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+
+        // TODO Support for duplicates (MDB_SORTDUP)
+        let ret = mdb_del(txn, dbi, &keyVal, nil)
+        guard ret == 0 else {
+            return .Failure(.LMDBError(ret))
+        }
+
+        return .Success()
     }
 }
