@@ -28,11 +28,11 @@ public struct Database {
         return .Success(Database(txn: txn, dbi: dbi))
     }
 
-    public func put(var key key: Int, var value: Int) -> Result<(), ElephantError> {
-        var keyData = MDB_val(mv_size: sizeof(Int), mv_data: &key)
-        var valueData = MDB_val(mv_size: sizeof(Int), mv_data: &value)
+    public func put(var key key: Int, var data: Int) -> Result<(), ElephantError> {
+        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+        var dataVal = MDB_val(mv_size: sizeof(Int), mv_data: &data)
 
-        let ret = mdb_put(txn, dbi, &keyData, &valueData, 0)
+        let ret = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
@@ -41,15 +41,15 @@ public struct Database {
     }
 
     public func get(var key: Int) -> Result<Int, ElephantError> {
-        var keyData = MDB_val(mv_size: sizeof(Int), mv_data: &key)
-        var valueData = MDB_val()
+        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+        var dataVal = MDB_val()
 
-        let ret = mdb_get(txn, dbi, &keyData, &valueData)
+        let ret = mdb_get(txn, dbi, &keyVal, &dataVal)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
 
         // TODO Need some safeguards here...
-        return .Success(UnsafeMutablePointer<Int>(valueData.mv_data).memory)
+        return .Success(UnsafeMutablePointer<Int>(dataVal.mv_data).memory)
     }
 }

@@ -34,7 +34,7 @@ class ElephantTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case .Success = dbi.put(key: 2, value: 5) else {
+            guard case .Success = dbi.put(key: 2, data: 5) else {
                 XCTAssert(false)
                 return
             }
