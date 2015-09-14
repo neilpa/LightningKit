@@ -8,23 +8,23 @@ import lmdb
 
 /// Opaque wrapper for an LMDB transaction.
 public struct Transaction {
-    internal let txn: COpaquePointer
+    internal let handle: COpaquePointer
 
     /// Start a new transaction in the given `environment`.
     public static func begin(environment: Environment, readOnly: Bool = false, parent: Transaction? = nil) -> Result<Transaction, ElephantError> {
-        var txn: COpaquePointer = nil
+        var handle: COpaquePointer = nil
         let flags = readOnly ? UInt32(MDB_RDONLY) : 0
 
-        let ret = mdb_txn_begin(environment.env, parent?.txn ?? nil, flags, &txn)
+        let ret = mdb_txn_begin(environment.env, parent?.handle ?? nil, flags, &handle)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
 
-        return .Success(self.init(txn: txn))
+        return .Success(self.init(handle: handle))
     }
 
     public func commit() -> Result<(), ElephantError> {
-        let ret = mdb_txn_commit(txn)
+        let ret = mdb_txn_commit(handle)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
@@ -33,10 +33,10 @@ public struct Transaction {
     }
 
     public func abort() {
-        mdb_txn_abort(txn)
+        mdb_txn_abort(handle)
     }
 
-    private init(txn: COpaquePointer) {
-        self.txn = txn
+    private init(handle: COpaquePointer) {
+        self.handle = handle
     }
 }

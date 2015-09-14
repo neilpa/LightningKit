@@ -19,46 +19,46 @@ public final class Environment {
             return .Failure(.CreateDirectoryError(error))
         }
 
-        var env: COpaquePointer = nil
-        var ret = mdb_env_create(&env)
+        var handle: COpaquePointer = nil
+        var ret = mdb_env_create(&handle)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
 
-        ret = mdb_env_open(env, path, 0, 0o644)
+        ret = mdb_env_open(handle, path, 0, 0o644)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
 
-        return .Success(self.init(path: path, env: env))
+        return .Success(self.init(path: path, handle: handle))
     }
 
     /// Wrapper for `mdb_env_stat`.
     public func stat() -> MDB_stat {
         var stat = MDB_stat()
-        mdb_env_stat(env, &stat)
+        mdb_env_stat(handle, &stat)
         return stat
     }
 
     /// Wrapper for `mdb_env_info`.
     public func info() -> MDB_envinfo {
         var info = MDB_envinfo()
-        mdb_env_info(env, &info)
+        mdb_env_info(handle, &info)
         return info
     }
 
     /// The directory path to this environment.
     public let path: String
 
-    /// The lmdb environment handle.
-    internal let env: COpaquePointer
+    /// The LMDB environment handle.
+    internal let handle: COpaquePointer
 
-    private init(path: String, env: COpaquePointer) {
+    private init(path: String, handle: COpaquePointer) {
         self.path = path
-        self.env = env
+        self.handle = handle
     }
 
     deinit {
-        mdb_env_close(env)
+        mdb_env_close(handle)
     }
 }
