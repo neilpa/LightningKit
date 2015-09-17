@@ -3,10 +3,11 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import Result
 import lmdb
+import Foundation
+import Result
 
-/// Opaque wrapper for an LMDB database.
+/// Opaque wrapper for an LMDB database instance.
 public struct Database {
     /// The handle to the transaction
     internal let txn: COpaquePointer
@@ -29,11 +30,10 @@ public struct Database {
         return .Success(Database(txn: txn, dbi: dbi))
     }
 
-    /// Associates `data` with the provided `key`. This is a typed wrapper
-    /// for `mdb_put`.
-    public func put(var key key: Int, var data: Int) -> Result<(), ElephantError> {
-        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
-        var dataVal = MDB_val(mv_size: sizeof(Int), mv_data: &data)
+    /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.
+    public func put(key key: NSData, data: NSData) -> Result<(), ElephantError> {
+        var keyVal = MDB_val(mv_size: key.length, mv_data: unsafeBitCast(key.bytes, UnsafeMutablePointer<Void>.self))
+        var dataVal = MDB_val(mv_size: data.length, mv_data: unsafeBitCast(data.bytes, UnsafeMutablePointer<Void>.self))
 
         let ret = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
         guard ret == 0 else {
@@ -43,10 +43,9 @@ public struct Database {
         return .Success()
     }
 
-    /// Retuns the data associated with the provided `key`. This is a typed
-    /// wrapper for `mdb_get`.
-    public func get(var key: Int) -> Result<Int, ElephantError> {
-        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+    /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
+    public func get(key: NSData) -> Result<NSData, ElephantError> {
+        var keyVal = MDB_val(mv_size: key.length, mv_data: unsafeBitCast(key.bytes, UnsafeMutablePointer<Void>.self))
         var dataVal = MDB_val()
 
         let ret = mdb_get(txn, dbi, &keyVal, &dataVal)
@@ -54,14 +53,12 @@ public struct Database {
             return .Failure(.LMDBError(ret))
         }
 
-        // TODO Need some safeguards here...
-        return .Success(UnsafeMutablePointer<Int>(dataVal.mv_data).memory)
+        return .Success(NSData(bytes: dataVal.mv_data, length: dataVal.mv_size))
     }
 
-    /// Deletes the `key` and associated `data` from the database. This is a
-    /// typed wrapper for `mdb_del`.
-    public func del(var key: Int) -> Result<(), ElephantError> {
-        var keyVal = MDB_val(mv_size: sizeof(Int), mv_data: &key)
+    /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
+    public func del(key: NSData) -> Result<(), ElephantError> {
+        var keyVal = MDB_val(mv_size: key.length, mv_data: unsafeBitCast(key.bytes, UnsafeMutablePointer<Void>.self))
 
         // TODO Support for duplicates (MDB_SORTDUP)
         let ret = mdb_del(txn, dbi, &keyVal, nil)

@@ -6,7 +6,7 @@
 import lmdb
 import Result
 
-/// Opaque wrapper for an LMDB database.
+/// Opaque wrapper for an LMDB database cursor.
 public struct Cursor {
     /// The handle to the cursor
     internal let handle: COpaquePointer
@@ -23,7 +23,7 @@ public struct Cursor {
 
     /// Set the cursor at a position
     public func set() {
-        // TODO mdb_curor_set
+        // TODO mdb_cursor_set
     }
 
     /// Get data from the current cursor position

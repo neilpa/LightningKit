@@ -3,8 +3,8 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import Result
 import lmdb
+import Result
 
 /// Opaque wrapper for an LMDB transaction.
 public struct Transaction {
