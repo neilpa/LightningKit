@@ -25,7 +25,7 @@ public final class Environment {
             return .Failure(.LMDBError(ret))
         }
 
-        ret = mdb_env_open(handle, path, 0, 0o644)
+        ret = mdb_env_open(handle, path, 0, 0o600)
         guard ret == 0 else {
             return .Failure(.LMDBError(ret))
         }
