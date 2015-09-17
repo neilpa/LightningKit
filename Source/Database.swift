@@ -9,15 +9,16 @@ import lmdb
 /// Opaque wrapper for an LMDB database.
 public struct Database {
     /// The handle to the transaction
-    private let txn: COpaquePointer
+    internal let txn: COpaquePointer
 
     /// The wrapped database instance
-    private let dbi: MDB_dbi
+    internal let dbi: MDB_dbi
 
     /// Open a named database in the given transaction.
     public static func open(transaction: Transaction, name: String? = nil) -> Result<Database, ElephantError> {
         let txn = transaction.handle
 
+        // TODO: Rely on the internals of this (e.g main database and tracked in environment)
         var dbi = MDB_dbi()
         // TODO Use the name
         let ret = mdb_dbi_open(txn, nil, 0, &dbi)
