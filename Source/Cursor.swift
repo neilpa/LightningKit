@@ -27,8 +27,14 @@ public final class Cursor {
     }
 
     /// Get data from the current cursor position
-    public func get() {
+    public func get() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
         // TODO mdb_cursor_get
+        var (keyVal, dataVal) = (MDB_val(), MDB_val())
+        mdb_cursor_get(handle, &keyVal, &dataVal, MDB_NEXT)
+
+        let key = ByteBuffer(start: unsafeBitCast(keyVal.mv_data, UnsafePointer<UInt8>.self), count: keyVal.mv_size)
+        let data = ByteBuffer(start: unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self), count: dataVal.mv_size)
+        return .Success((key, data))
     }
 
     private init(handle: COpaquePointer) {

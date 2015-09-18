@@ -6,11 +6,11 @@
 import lmdb
 import Result
 
+/// Raw buffers for interfacing with LMDB to defer copies until necessary.
+public typealias ByteBuffer = UnsafeBufferPointer<UInt8>
+
 /// Opaque wrapper for an LMDB database instance.
 internal struct Database {
-    /// Raw buffers for interfacing with LMDB to defer copies until necessary.
-    internal typealias ByteBuffer = UnsafeBufferPointer<UInt8>
-
     /// The handle to the transaction
     internal let txn: COpaquePointer
 
@@ -35,8 +35,8 @@ internal struct Database {
     /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.
     internal func put(key key: ByteBuffer, data: ByteBuffer) -> Result<(), ElephantError> {
         // The key and value buffers aren't modified for a put.
-        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key, UnsafeMutablePointer<Void>.self))
-        var dataVal = MDB_val(mv_size: data.count, mv_data: unsafeBitCast(data, UnsafeMutablePointer<Void>.self))
+        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key.baseAddress, UnsafeMutablePointer<Void>.self))
+        var dataVal = MDB_val(mv_size: data.count, mv_data: unsafeBitCast(data.baseAddress, UnsafeMutablePointer<Void>.self))
 
         let ret = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
         guard ret == 0 else {
@@ -49,7 +49,7 @@ internal struct Database {
     /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
     internal func get(key: ByteBuffer) -> Result<ByteBuffer, ElephantError> {
         // The key buffer isn't modified for a get.
-        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key, UnsafeMutablePointer<Void>.self))
+        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key.baseAddress, UnsafeMutablePointer<Void>.self))
         var dataVal = MDB_val()
 
         let ret = mdb_get(txn, dbi, &keyVal, &dataVal)
@@ -63,7 +63,7 @@ internal struct Database {
 
     /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
     internal func del(key: ByteBuffer) -> Result<(), ElephantError> {
-        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key, UnsafeMutablePointer<Void>.self))
+        var keyVal = MDB_val(mv_size: key.count, mv_data: unsafeBitCast(key.baseAddress, UnsafeMutablePointer<Void>.self))
 
         // TODO Support for duplicates (MDB_SORTDUP)
         let ret = mdb_del(txn, dbi, &keyVal, nil)
