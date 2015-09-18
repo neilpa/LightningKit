@@ -35,14 +35,14 @@ class ElephantTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case .Success = dbi.put(key: "qwer".dataUsingEncoding(NSUTF8StringEncoding)!, data: "fdsa".dataUsingEncoding(NSUTF8StringEncoding)!) else {
-                XCTAssert(false)
-                return
-            }
-            guard case .Success = txn.commit() else {
-                XCTAssert(false)
-                return
-            }
+//            guard case .Success = dbi.put(key: "qwer".dataUsingEncoding(NSUTF8StringEncoding)!, data: "fdsa".dataUsingEncoding(NSUTF8StringEncoding)!) else {
+//                XCTAssert(false)
+//                return
+//            }
+//            guard case .Success = txn.commit() else {
+//                XCTAssert(false)
+//                return
+//            }
         }
 
         do {
@@ -54,15 +54,15 @@ class ElephantTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case let .Success(value) = dbi.get("asdf".dataUsingEncoding(NSUTF8StringEncoding)!),
-                       let str = String(data: value, encoding: NSUTF8StringEncoding) where str == "fdsa" else {
-                XCTAssert(false)
-                return
-            }
-            guard case .Success = txn.commit() else {
-                XCTAssert(false)
-                return
-            }
+//            guard case let .Success(value) = dbi.get("asdf".dataUsingEncoding(NSUTF8StringEncoding)!),
+//                       let str = String(data: value, encoding: NSUTF8StringEncoding) where str == "fdsa" else {
+//                XCTAssert(false)
+//                return
+//            }
+//            guard case .Success = txn.commit() else {
+//                XCTAssert(false)
+//                return
+//            }
         }
 
 //        do {
