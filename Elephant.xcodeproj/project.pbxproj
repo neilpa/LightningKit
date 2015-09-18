@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
-		D80792961B799A7A002D424A /* ReactiveCocoa.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792911B799A41002D424A /* ReactiveCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D80792971B799A7A002D424A /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D80792971B799A7A002D424A /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* ElephantTests.swift */; };
 		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
 		D826D98E1B79C85F00BC6D32 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
@@ -34,15 +33,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D80792951B799A73002D424A /* CopyFiles */ = {
+		D80792951B799A73002D424A /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				D80792961B799A7A002D424A /* ReactiveCocoa.framework in CopyFiles */,
-				D80792971B799A7A002D424A /* Result.framework in CopyFiles */,
+				D80792971B799A7A002D424A /* Result.framework in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -179,7 +178,7 @@
 			buildPhases = (
 				D87666571B76660D00027E54 /* Sources */,
 				D87666581B76660D00027E54 /* Frameworks */,
-				D80792951B799A73002D424A /* CopyFiles */,
+				D80792951B799A73002D424A /* Copy Files */,
 			);
 			buildRules = (
 			);
