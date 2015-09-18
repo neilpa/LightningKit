@@ -89,9 +89,18 @@ class ElephantTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            while case let .Success(key, data) = cursor.get() where key.count > 0 {
+            while case let .Success(key, data) = cursor.next() where key.count > 0 {
                 print(key, data)
             }
+            while case let .Success(key, data) = cursor.prev() where key.count > 0 {
+                print(key, data)
+            }
+            let r = cursor.last()
+            guard case let .Success(key, data) = r else {
+                XCTAssert(false)
+                return
+            }
+            print(key, data)
             txn.abort()
         }
     }

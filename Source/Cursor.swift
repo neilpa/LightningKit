@@ -26,10 +26,28 @@ public final class Cursor {
         // TODO mdb_cursor_set
     }
 
-    /// Get data from the current cursor position
-    public func get() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
-        // TODO mdb_cursor_get
-        let ret = mdb_cursor_get(handle, &_key, &_data, MDB_NEXT)
+    /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
+    public func next() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        return cursorOp(MDB_NEXT)
+    }
+
+    /// Position the cursor at the previous key. Equivalent `mdb_cursor_get(MDB_PREV).`
+    public func prev() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        return cursorOp(MDB_PREV)
+    }
+
+    /// Position the cursor at the first key. Equivalent `mdb_cursor_get(MDB_FIRST).`
+    public func first() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        return cursorOp(MDB_FIRST)
+    }
+
+    /// Position the cursor at the last key. Equivalent `mdb_cursor_get(MDB_LAST).`
+    public func last() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        return cursorOp(MDB_LAST)
+    }
+
+    private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        let ret = mdb_cursor_get(handle, &_key, &_data, op)
         if ret != 0 {
             return .Failure(.LMDBError(ret))
         }
