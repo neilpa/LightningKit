@@ -28,7 +28,7 @@ class ElephantTests: XCTestCase {
         }
 
         do {
-            guard case let .Success(txn) = Transaction.begin(env) else {
+            guard case let .Success(txn) = Transaction.begin(env, writeable: true) else {
                 XCTAssert(false)
                 return
             }
@@ -40,14 +40,15 @@ class ElephantTests: XCTestCase {
 //                XCTAssert(false)
 //                return
 //            }
-//            guard case .Success = txn.commit() else {
-//                XCTAssert(false)
-//                return
-//            }
+            guard case .Success = txn.commit() else {
+                XCTAssert(false)
+                return
+            }
         }
 
         do {
-            guard case let .Success(txn) = Transaction.begin(env, readOnly: true) else {
+            let r = Transaction.begin(env)
+            guard case let .Success(txn) = r else {
                 XCTAssert(false)
                 return
             }
@@ -60,10 +61,10 @@ class ElephantTests: XCTestCase {
 //                XCTAssert(false)
 //                return
 //            }
-//            guard case .Success = txn.commit() else {
-//                XCTAssert(false)
-//                return
-//            }
+            guard case .Success = txn.commit() else {
+                XCTAssert(false)
+                return
+            }
         }
 
 //        do {
