@@ -7,8 +7,7 @@ import lmdb
 import Result
 
 /// Opaque wrapper for an LMDB transaction.
-//  TODO Should probably be `final class`
-public struct Transaction {
+public final class Transaction {
     internal let handle: COpaquePointer
 
     /// Start a new transaction in the given `environment`.
@@ -41,5 +40,9 @@ public struct Transaction {
 
     private init(handle: COpaquePointer) {
         self.handle = handle
+    }
+
+    deinit {
+        // TODO?
     }
 }
