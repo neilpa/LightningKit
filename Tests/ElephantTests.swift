@@ -3,8 +3,9 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
+@testable import Elephant
+
 import XCTest
-import Elephant
 import Result
 import Foundation
 

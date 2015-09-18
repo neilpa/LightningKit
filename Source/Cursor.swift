@@ -12,7 +12,7 @@ public struct Cursor {
     internal let handle: COpaquePointer
 
     /// Open a cursor to operate against the database.
-    public static func open(database: Database) -> Result<Cursor, ElephantError> {
+    internal static func open(database: Database) -> Result<Cursor, ElephantError> {
         var handle: COpaquePointer = nil
         let ret = mdb_cursor_open(database.txn, database.dbi, &handle)
         guard ret == 0 else {
