@@ -20,8 +20,6 @@
 		D8CD94261B7DA55E00086B23 /* liblmdb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CD94251B7DA55E00086B23 /* liblmdb.dylib */; };
 		D8CE16F71BADD6DC00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE16F91BADDDF700DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
-		D8EF54D11BAD0BEF007EF9DA /* MessagePack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8EF54D01BAD0BEF007EF9DA /* MessagePack.framework */; };
-		D8EF54D21BAD0C12007EF9DA /* MessagePack.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D8EF54D01BAD0BEF007EF9DA /* MessagePack.framework */; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -42,7 +40,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				D8EF54D21BAD0C12007EF9DA /* MessagePack.framework in Copy Files */,
 				D80792971B799A7A002D424A /* Result.framework in Copy Files */,
 			);
 			name = "Copy Files";
@@ -77,7 +74,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8CD94261B7DA55E00086B23 /* liblmdb.dylib in Frameworks */,
-				D8EF54D11BAD0BEF007EF9DA /* MessagePack.framework in Frameworks */,
 				D80792941B799A41002D424A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

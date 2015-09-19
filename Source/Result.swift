@@ -16,9 +16,4 @@ internal extension Result {
     internal static func fsError(error: ErrorType) -> Result<T, ElephantError> {
         return .Failure(.FileSystem(error))
     }
-
-    /// Convenience function for wrapping a MessagePack error.
-    internal static func msgPackError(error: MessagePackError) -> Result<T, ElephantError> {
-        return .Failure(.MessagePack(error))
-    }
 }

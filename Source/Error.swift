@@ -4,7 +4,6 @@
 //
 
 import lmdb
-import MessagePack
 
 /// Packaged errors from different interactions.
 public enum ElephantError: ErrorType {
@@ -13,9 +12,6 @@ public enum ElephantError: ErrorType {
 
     /// LMDB operation failure.
     case LMDB(Int32)
-
-    /// MessagePack serialization failure.
-    case MessagePack(MessagePackError)
 
     /// An unknown error (e.g. throws catchall).
     case Unknown(ErrorType)
@@ -28,8 +24,6 @@ extension ElephantError: CustomStringConvertible {
             return "[FileSystem] \(error)"
         case let .LMDB(code):
             return "[LMDB:\(code)] \(mdb_strerror(code))"
-        case let .MessagePack(error):
-            return "[MessagePack] \(error)"
         case let .Unknown(error):
             return "[Unknown] \(error)"
         }
