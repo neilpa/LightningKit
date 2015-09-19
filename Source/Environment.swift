@@ -55,16 +55,12 @@ public final class Environment {
     /// transaction will be committed, otherwise it's aborted.
     internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, ElephantError>) -> Result<T, ElephantError> {
         return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
-            .flatMap { txn in
-                return fn(txn).analysis(
-                    ifSuccess: { value in
-                        let err = mdb_txn_commit(txn)
-                        return err == 0 ? .Success(value) : .lmdbError(err)
-                    }, ifFailure: { failure in
-                        mdb_txn_abort(txn)
-                        return .Failure(failure)
-                    })
-            }
+            .transact(fn,
+                commit: {
+                    let err = mdb_txn_commit($0)
+                    return err != 0 ? .LMDB(err) : nil
+                },
+                abort: mdb_txn_abort)
     }
 
     /// Wrapper for `mdb_env_stat`.

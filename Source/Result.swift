@@ -18,8 +18,8 @@ internal extension Result {
     }
 
     /// Helper for consuming a "resource" with transactional semantics.
-    internal func transact<U>(acquire: () -> Result, consume: T -> Result<U, Error>, commit: T -> Error?, abort: T -> ()) -> Result<U, Error> {
-        return acquire().flatMap { resource in
+    internal func transact<U>(consume: T -> Result<U, Error>, commit: T -> Error?, abort: T -> ()) -> Result<U, Error> {
+        return flatMap { resource in
             return consume(resource).analysis(
                 ifSuccess: { value in
                     if let error = commit(resource) {
