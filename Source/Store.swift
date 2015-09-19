@@ -3,7 +3,8 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import MessagePack
+import lmdb
+import Foundation
 import Result
 
 /// Wrappers for the environment for writing typed data
@@ -15,27 +16,35 @@ public final class Store {
     }
 
     /// Get a string from the key/value store
-    public func get(key: MessagePackValue) -> Result<MessagePackValue, ElephantError> {
+    public func get(key: String) -> Result<String, ElephantError> {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 
         let dbi = Database.open(txn).value!
-        return pack(key).withUnsafeBufferPointer { keyBuffer in
-            let value = dbi.get(keyBuffer).value!
-            let data = NSData(bytes: unsafeBitCast(value.baseAddress, UnsafePointer<Void>.self), length: value.count)
-            return try! .Success(unpack(data))
+        return key.withUnsafeBufferPointer { keyBuffer in
+            let value: ByteBuffer = dbi.get(keyBuffer).value!
+            let string = String(bytes: value, encoding: NSUTF8StringEncoding)
+            return string.map(Result.Success) ?? .Failure(.Decode(""))
         }
     }
 
     /// Put a string in the key/value store
-    public func put(key: MessagePackValue, _ value: MessagePackValue) -> Result<(), ElephantError> {
+    public func put(key: String, _ value: String) -> Result<(), ElephantError> {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 
         let dbi = Database.open(txn).value!
-        return pack(key).withUnsafeBufferPointer { keyBuffer in
-        return pack(value).withUnsafeBufferPointer { valueBuffer in
+        return key.withUnsafeBufferPointer { keyBuffer in
+        return value.withUnsafeBufferPointer { valueBuffer in
             return dbi.put(key: keyBuffer, data: valueBuffer)
         } }
+    }
+}
+
+internal extension String {
+    internal func withUnsafeBufferPointer<T>(f: UnsafeBufferPointer<UInt8> -> T) -> T {
+        return withCString {
+            return f(ByteBuffer(start: unsafeBitCast($0, UnsafePointer<UInt8>.self), count: utf8.count))
+        }
     }
 }

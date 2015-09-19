@@ -4,7 +4,6 @@
 //
 
 import lmdb
-import MessagePack
 import Result
 
 internal extension Result {

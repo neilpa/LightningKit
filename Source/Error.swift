@@ -13,6 +13,9 @@ public enum ElephantError: ErrorType {
     /// LMDB operation failure.
     case LMDB(Int32)
 
+    /// Failed to deserialize a binary blob
+    case Decode(String)
+
     /// An unknown error (e.g. throws catchall).
     case Unknown(ErrorType)
 }
@@ -24,6 +27,8 @@ extension ElephantError: CustomStringConvertible {
             return "[FileSystem] \(error)"
         case let .LMDB(code):
             return "[LMDB:\(code)] \(mdb_strerror(code))"
+        case let .Decode(message):
+            return "[Decode] \(message)"
         case let .Unknown(error):
             return "[Unknown] \(error)"
         }
