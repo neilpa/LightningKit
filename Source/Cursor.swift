@@ -52,9 +52,7 @@ public final class Cursor {
             return .lmdbError(err)
         }
 
-        let key = ByteBuffer(start: unsafeBitCast(_key.mv_data, UnsafePointer<UInt8>.self), count: _key.mv_size)
-        let data = ByteBuffer(start: unsafeBitCast(_data.mv_data, UnsafePointer<UInt8>.self), count: _data.mv_size)
-        return .Success((key, data))
+        return .Success((toBuffer(_key), toBuffer(_data)))
     }
 
     private init(handle: COpaquePointer) {
