@@ -3,19 +3,35 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
+import lmdb
 import MessagePack
 
-/// Errors that can arise.
+/// Packaged errors from different interactions.
 public enum ElephantError: ErrorType {
-    /// Failed to create a directory.
-    case CreateDirectoryError(ErrorType)
+    /// File System operation failure.
+    case FileSystem(ErrorType)
 
-    /// Wraps an underlying lmdb error code.
-    case LMDBError(Int32)
+    /// LMDB operation failure.
+    case LMDB(Int32)
 
-    /// Wraps a MessagePack serialization failure
+    /// MessagePack serialization failure.
     case MessagePack(MessagePackError)
 
-    /// An unknown error (blame throws)
+    /// An unknown error (e.g. throws catchall).
     case Unknown(ErrorType)
+}
+
+extension ElephantError: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case let .FileSystem(error):
+            return "[FileSystem] \(error)"
+        case let .LMDB(code):
+            return "[LMDB:\(code)] \(mdb_strerror(code))"
+        case let .MessagePack(error):
+            return "[MessagePack] \(error)"
+        case let .Unknown(error):
+            return "[Unknown] \(error)"
+        }
+    }
 }

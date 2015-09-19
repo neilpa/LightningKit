@@ -16,18 +16,18 @@ public final class Environment {
         do {
             try fs.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
         } catch let error {
-            return .Failure(.CreateDirectoryError(error))
+            return .Failure(.FileSystem(error))
         }
 
         var handle: COpaquePointer = nil
         var ret = mdb_env_create(&handle)
         guard ret == 0 else {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
 
         ret = mdb_env_open(handle, path, 0, 0o600)
         guard ret == 0 else {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
 
         return .Success(self.init(path: path, handle: handle))

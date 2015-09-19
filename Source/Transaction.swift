@@ -17,7 +17,7 @@ public final class Transaction {
 
         let ret = mdb_txn_begin(environment.handle, parent?.handle ?? nil, flags, &handle)
         guard ret == 0 else {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
 
         return .Success(self.init(handle: handle))
@@ -27,7 +27,7 @@ public final class Transaction {
     public func commit() -> Result<(), ElephantError> {
         let ret = mdb_txn_commit(handle)
         guard ret == 0 else {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
 
         return .Success()

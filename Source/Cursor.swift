@@ -16,7 +16,7 @@ public final class Cursor {
         var handle: COpaquePointer = nil
         let ret = mdb_cursor_open(database.txn, database.dbi, &handle)
         guard ret == 0 else {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
         return .Success(Cursor(handle: handle))
     }
@@ -49,7 +49,7 @@ public final class Cursor {
     private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
         let ret = mdb_cursor_get(handle, &_key, &_data, op)
         if ret != 0 {
-            return .Failure(.LMDBError(ret))
+            return .Failure(.LMDB(ret))
         }
 
         let key = ByteBuffer(start: unsafeBitCast(_key.mv_data, UnsafePointer<UInt8>.self), count: _key.mv_size)
