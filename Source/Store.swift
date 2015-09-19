@@ -3,7 +3,7 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import lmdb
+import LMDB
 import Foundation
 import Result
 

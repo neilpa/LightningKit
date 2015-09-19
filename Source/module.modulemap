@@ -1,4 +1,0 @@
-module lmdb [system] {
-    header "/usr/local/Cellar/lmdb/0.9.14/include/lmdb.h"
-    export *
-}

@@ -3,7 +3,7 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-import lmdb
+import LMDB
 
 /// Raw buffers for interfacing with LMDB values that represent both keys and data.
 public typealias ByteBuffer = UnsafeBufferPointer<UInt8>

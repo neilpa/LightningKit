@@ -17,9 +17,10 @@
 		D8A0CB3F1BA6502400D43E17 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; settings = {ASSET_TAGS = (); }; };
 		D8A0CB411BA653E400D43E17 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; settings = {ASSET_TAGS = (); }; };
 		D8A0CB451BA683E300D43E17 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CD94261B7DA55E00086B23 /* liblmdb.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CD94251B7DA55E00086B23 /* liblmdb.dylib */; };
 		D8CE16F71BADD6DC00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE16F91BADDDF700DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17351BAE256B00DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
+		D8CE17361BAE259200DE22DA /* LMDB.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
+				D8CE17361BAE259200DE22DA /* LMDB.framework in Copy Files */,
 				D80792971B799A7A002D424A /* Result.framework in Copy Files */,
 			);
 			name = "Copy Files";
@@ -49,7 +51,6 @@
 
 /* Begin PBXFileReference section */
 		D80792921B799A41002D424A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
-		D826D97E1B79BAE100BC6D32 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		D826D9891B79C3A100BC6D32 /* ElephantTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElephantTests.swift; sourceTree = "<group>"; };
 		D826D98B1B79C75900BC6D32 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		D87666501B76660D00027E54 /* Elephant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elephant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,10 +62,9 @@
 		D8A0CB3E1BA6502400D43E17 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		D8A0CB401BA653E400D43E17 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		D8A0CB441BA683E300D43E17 /* Cursor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cursor.swift; sourceTree = "<group>"; };
-		D8CD94251B7DA55E00086B23 /* liblmdb.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblmdb.dylib; path = ../../../../../usr/local/Cellar/lmdb/0.9.14/lib/liblmdb.dylib; sourceTree = "<group>"; };
 		D8CE16F61BADD6DC00DE22DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
-		D8EF54D01BAD0BEF007EF9DA /* MessagePack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessagePack.framework; path = Carthage/Build/Mac/MessagePack.framework; sourceTree = "<group>"; };
+		D8CE17341BAE256B00DE22DA /* LMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDB.framework; path = Carthage/Build/Mac/LMDB.framework; sourceTree = "<group>"; };
 		D8EF54D31BAD1331007EF9DA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D8CD94261B7DA55E00086B23 /* liblmdb.dylib in Frameworks */,
+				D8CE17351BAE256B00DE22DA /* LMDB.framework in Frameworks */,
 				D80792941B799A41002D424A /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,8 +92,7 @@
 		D80792981B799A89002D424A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8CD94251B7DA55E00086B23 /* liblmdb.dylib */,
-				D8EF54D01BAD0BEF007EF9DA /* MessagePack.framework */,
+				D8CE17341BAE256B00DE22DA /* LMDB.framework */,
 				D80792921B799A41002D424A /* Result.framework */,
 			);
 			name = Frameworks;
@@ -131,7 +130,6 @@
 				D8A0CB3E1BA6502400D43E17 /* Transaction.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
 				D87666541B76660D00027E54 /* Info.plist */,
-				D826D97E1B79BAE100BC6D32 /* module.modulemap */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -384,7 +382,6 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -412,7 +409,6 @@
 				);
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Source";
 			};
 			name = Release;
 		};
