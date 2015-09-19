@@ -20,14 +20,15 @@ public final class Environment {
         }
 
         var handle: COpaquePointer = nil
-        var ret = mdb_env_create(&handle)
-        guard ret == 0 else {
-            return .lmdbError(ret)
+        var err = mdb_env_create(&handle)
+
+        guard err == 0 else {
+            return .lmdbError(err)
         }
 
-        ret = mdb_env_open(handle, path, 0, 0o600)
-        guard ret == 0 else {
-            return .lmdbError(ret)
+        err = mdb_env_open(handle, path, 0, 0o600)
+        guard err == 0 else {
+            return .lmdbError(err)
         }
 
         return .Success(self.init(path: path, handle: handle))

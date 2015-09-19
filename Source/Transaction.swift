@@ -15,9 +15,9 @@ public final class Transaction {
         var handle: COpaquePointer = nil
         let flags = writeable ? 0 : UInt32(MDB_RDONLY)
 
-        let ret = mdb_txn_begin(environment.handle, parent?.handle ?? nil, flags, &handle)
-        guard ret == 0 else {
-            return .lmdbError(ret)
+        let err = mdb_txn_begin(environment.handle, parent?.handle ?? nil, flags, &handle)
+        guard err == 0 else {
+            return .lmdbError(err)
         }
 
         return .Success(self.init(handle: handle))
@@ -25,9 +25,9 @@ public final class Transaction {
 
     /// Commits changes executed during this transaction.
     public func commit() -> Result<(), ElephantError> {
-        let ret = mdb_txn_commit(handle)
-        guard ret == 0 else {
-            return .lmdbError(ret)
+        let err = mdb_txn_commit(handle)
+        guard err == 0 else {
+            return .lmdbError(err)
         }
 
         return .Success()
