@@ -17,3 +17,9 @@ internal extension Result {
         return .Failure(.FileSystem(error))
     }
 }
+
+internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, ElephantError> {
+    var out: COpaquePointer = nil
+    let err = fn(a, b, c, &out)
+    return err == 0 ? .Success(out) : .lmdbError(err)
+}

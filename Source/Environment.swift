@@ -54,20 +54,17 @@ public final class Environment {
     /// Opens a read-only transaction for querying the database. If `fn` succeeds the
     /// transaction will be committed, otherwise it's aborted.
     internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, ElephantError>) -> Result<T, ElephantError> {
-        var txn: COpaquePointer = nil
-        let err = mdb_txn_begin(env, nil, UInt32(MDB_RDONLY), &txn)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        return fn(txn).analysis(
-            ifSuccess: { value in
-                let err = mdb_txn_commit(txn)
-                return err == 0 ? .Success(value) : .lmdbError(err)
-            }, ifFailure: { failure in
-                mdb_txn_abort(txn)
-                return .Failure(failure)
-            })
+        return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
+            .flatMap { txn in
+                return fn(txn).analysis(
+                    ifSuccess: { value in
+                        let err = mdb_txn_commit(txn)
+                        return err == 0 ? .Success(value) : .lmdbError(err)
+                    }, ifFailure: { failure in
+                        mdb_txn_abort(txn)
+                        return .Failure(failure)
+                    })
+            }
     }
 
     /// Wrapper for `mdb_env_stat`.
