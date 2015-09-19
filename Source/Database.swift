@@ -18,7 +18,6 @@ internal struct Database {
     internal static func open(transaction: Transaction, name: String? = nil) -> Result<Database, ElephantError> {
         let txn = transaction.handle
 
-        // TODO: Rely on the internals of this (e.g main database and tracked in environment)
         var dbi = MDB_dbi()
         // TODO Use the name
         let err = mdb_dbi_open(txn, nil, 0, &dbi)

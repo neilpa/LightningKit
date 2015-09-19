@@ -31,7 +31,43 @@ public final class Environment {
             return .lmdbError(err)
         }
 
-        return .Success(self.init(path: path, handle: handle))
+        // Temp transaction to open the primary database instance
+        return query(handle) { txn in
+            var dbi = MDB_dbi()
+            err = mdb_dbi_open(txn, nil, 0, &dbi)
+            guard err == 0 else {
+                return .lmdbError(err)
+            }
+
+            return .Success(dbi)
+        }
+        .analysis(
+            ifSuccess: { dbi in
+                return .Success(self.init(path: path, handle: handle, dbi: dbi))
+            },
+            ifFailure: { error in
+                mdb_env_close(handle)
+                return .Failure(error)
+            })
+    }
+
+    /// Opens a read-only transaction for querying the database. If `fn` succeeds the
+    /// transaction will be committed, otherwise it's aborted.
+    internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, ElephantError>) -> Result<T, ElephantError> {
+        var txn: COpaquePointer = nil
+        let err = mdb_txn_begin(env, nil, UInt32(MDB_RDONLY), &txn)
+        guard err == 0 else {
+            return .lmdbError(err)
+        }
+
+        return fn(txn).analysis(
+            ifSuccess: { value in
+                let err = mdb_txn_commit(txn)
+                return err == 0 ? .Success(value) : .lmdbError(err)
+            }, ifFailure: { failure in
+                mdb_txn_abort(txn)
+                return .Failure(failure)
+            })
     }
 
     /// Wrapper for `mdb_env_stat`.
@@ -54,9 +90,13 @@ public final class Environment {
     /// The LMDB environment handle.
     internal let handle: COpaquePointer
 
-    private init(path: String, handle: COpaquePointer) {
+    /// The root (e.g. unamed) database for this enviroment.
+    internal let dbi: MDB_dbi
+
+    private init(path: String, handle: COpaquePointer, dbi: MDB_dbi) {
         self.path = path
         self.handle = handle
+        self.dbi = dbi
     }
 
     deinit {
