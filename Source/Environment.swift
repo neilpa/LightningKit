@@ -21,7 +21,6 @@ public final class Environment {
 
         var handle: COpaquePointer = nil
         var err = mdb_env_create(&handle)
-
         guard err == 0 else {
             return .lmdbError(err)
         }
@@ -33,13 +32,7 @@ public final class Environment {
 
         // Temp transaction to open the primary database instance
         return query(handle) { txn in
-            var dbi = MDB_dbi()
-            err = mdb_dbi_open(txn, nil, 0, &dbi)
-            guard err == 0 else {
-                return .lmdbError(err)
-            }
-
-            return .Success(dbi)
+            return lmdbTry(txn, nil, 0, mdb_dbi_open)
         }
         .analysis(
             ifSuccess: { dbi in

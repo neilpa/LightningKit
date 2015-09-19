@@ -12,15 +12,8 @@ public final class Transaction {
 
     /// Start a new transaction in the given `environment`.
     public static func begin(environment: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, ElephantError> {
-        var handle: COpaquePointer = nil
         let flags = writeable ? 0 : UInt32(MDB_RDONLY)
-
-        let err = mdb_txn_begin(environment.handle, parent?.handle ?? nil, flags, &handle)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        return .Success(self.init(handle: handle))
+        return lmdbTry(environment.handle, parent?.handle ?? nil, flags, mdb_txn_begin).map(self.init)
     }
 
     /// Commits changes executed during this transaction.

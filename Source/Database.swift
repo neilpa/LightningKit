@@ -17,15 +17,9 @@ internal struct Database {
     /// Open a named database in the given transaction.
     internal static func open(transaction: Transaction, name: String? = nil) -> Result<Database, ElephantError> {
         let txn = transaction.handle
-
-        var dbi = MDB_dbi()
-        // TODO Use the name
-        let err = mdb_dbi_open(txn, nil, 0, &dbi)
-        guard err == 0 else {
-            return .lmdbError(err)
+        return lmdbTry(txn, nil, 0, mdb_dbi_open).map {
+            return Database(txn: txn, dbi: $0)
         }
-
-        return .Success(Database(txn: txn, dbi: dbi))
     }
 
     /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.

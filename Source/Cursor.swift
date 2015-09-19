@@ -13,12 +13,7 @@ public final class Cursor {
 
     /// Open a cursor to operate against the database.
     internal static func open(database: Database) -> Result<Cursor, ElephantError> {
-        var handle: COpaquePointer = nil
-        let err = mdb_cursor_open(database.txn, database.dbi, &handle)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-        return .Success(Cursor(handle: handle))
+        return lmdbTry(database.txn, database.dbi, mdb_cursor_open).map(self.init)
     }
 
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
@@ -42,6 +37,7 @@ public final class Cursor {
     }
 
     private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+        // TODO Stupid multi-value out params that are ordered badly
         let err = mdb_cursor_get(handle, &_key, &_data, op)
         if err != 0 {
             return .lmdbError(err)

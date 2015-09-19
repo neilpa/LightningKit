@@ -3,6 +3,7 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
+import lmdb
 import MessagePack
 import Result
 
@@ -36,8 +37,29 @@ internal extension Result {
     }
 }
 
+internal func lmdbTry<A, B>(a: A, _ b: B, _ fn: (A, B, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, ElephantError> {
+    var out: COpaquePointer = nil
+    let err = fn(a, b, &out)
+    return err == 0 ? .Success(out) : .lmdbError(err)
+}
+
 internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, ElephantError> {
     var out: COpaquePointer = nil
     let err = fn(a, b, c, &out)
     return err == 0 ? .Success(out) : .lmdbError(err)
+}
+
+internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<MDB_dbi>) -> Int32) -> Result<MDB_dbi, ElephantError> {
+    var out = MDB_dbi()
+    let err = fn(a, b, c, &out)
+    return err == 0 ? .Success(out) : .lmdbError(err)
+}
+
+//internal func lmdbTry<T>(fn: UnsafeMutablePointer<T> -> Int32) -> Result<T, ElephantError> {
+//
+//}
+//
+
+internal func lmdbTry(err: Int32) -> Result<(), ElephantError> {
+    return err == 0 ? .Success() : .lmdbError(err)
 }
