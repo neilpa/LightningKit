@@ -26,7 +26,7 @@ internal struct Database {
         // TODO Use the name
         let ret = mdb_dbi_open(txn, nil, 0, &dbi)
         guard ret == 0 else {
-            return .Failure(.LMDB(ret))
+            return .lmdbError(ret)
         }
 
         return .Success(Database(txn: txn, dbi: dbi))
@@ -40,7 +40,7 @@ internal struct Database {
 
         let ret = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
         guard ret == 0 else {
-            return .Failure(.LMDB(ret))
+            return .lmdbError(ret)
         }
 
         return .Success()
@@ -54,7 +54,7 @@ internal struct Database {
 
         let ret = mdb_get(txn, dbi, &keyVal, &dataVal)
         guard ret == 0 else {
-            return .Failure(.LMDB(ret))
+            return .lmdbError(ret)
         }
 
         let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
@@ -68,7 +68,7 @@ internal struct Database {
         // TODO Support for duplicates (MDB_SORTDUP)
         let ret = mdb_del(txn, dbi, &keyVal, nil)
         guard ret == 0 else {
-            return .Failure(.LMDB(ret))
+            return .lmdbError(ret)
         }
 
         return .Success()

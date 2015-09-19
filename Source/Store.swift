@@ -1,7 +1,4 @@
 //
-//  Store.swift
-//  Elephant
-//
 //  Created by Neil Pankey on 9/18/15.
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
