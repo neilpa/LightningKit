@@ -121,11 +121,11 @@
 		D87666521B76660D00027E54 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				D8EF54D31BAD1331007EF9DA /* Store.swift */,
 				D8A0CB441BA683E300D43E17 /* Cursor.swift */,
 				D8A0CB401BA653E400D43E17 /* Database.swift */,
 				D8A0CB3A1BA6406C00D43E17 /* Environment.swift */,
 				D826D98B1B79C75900BC6D32 /* Error.swift */,
+				D8EF54D31BAD1331007EF9DA /* Store.swift */,
 				D8A0CB3E1BA6502400D43E17 /* Transaction.swift */,
 				D87666551B76660D00027E54 /* Elephant.h */,
 				D87666541B76660D00027E54 /* Info.plist */,
