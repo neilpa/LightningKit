@@ -21,11 +21,6 @@ public final class Cursor {
         return .Success(Cursor(handle: handle))
     }
 
-    /// Set the cursor at a position
-    public func set() {
-        // TODO mdb_cursor_set
-    }
-
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
     public func next() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
         return cursorOp(MDB_NEXT)
@@ -68,7 +63,6 @@ public final class Cursor {
 }
 
 //
-//	MDB_FIRST,				/**< Position at first key/data item */
 //	MDB_FIRST_DUP,			/**< Position at first data item of current key.
 //								Only for #MDB_DUPSORT */
 //	MDB_GET_BOTH,			/**< Position at key/data pair. Only for #MDB_DUPSORT */
@@ -77,17 +71,14 @@ public final class Cursor {
 //	MDB_GET_MULTIPLE,		/**< Return key and up to a page of duplicate data items
 //								from current cursor position. Move cursor to prepare
 //								for #MDB_NEXT_MULTIPLE. Only for #MDB_DUPFIXED */
-//	MDB_LAST,				/**< Position at last key/data item */
 //	MDB_LAST_DUP,			/**< Position at last data item of current key.
 //								Only for #MDB_DUPSORT */
-//	MDB_NEXT,				/**< Position at next data item */
 //	MDB_NEXT_DUP,			/**< Position at next data item of current key.
 //								Only for #MDB_DUPSORT */
 //	MDB_NEXT_MULTIPLE,		/**< Return key and up to a page of duplicate data items
 //								from next cursor position. Move cursor to prepare
 //								for #MDB_NEXT_MULTIPLE. Only for #MDB_DUPFIXED */
 //	MDB_NEXT_NODUP,			/**< Position at first data item of next key */
-//	MDB_PREV,				/**< Position at previous data item */
 //	MDB_PREV_DUP,			/**< Position at previous data item of current key.
 //								Only for #MDB_DUPSORT */
 //	MDB_PREV_NODUP,			/**< Position at last data item of previous key */
