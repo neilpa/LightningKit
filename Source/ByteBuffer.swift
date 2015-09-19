@@ -8,12 +8,15 @@ import lmdb
 /// Raw buffers for interfacing with LMDB values that represent both keys and data.
 public typealias ByteBuffer = UnsafeBufferPointer<UInt8>
 
-/// Wraps an `MDB_val` buffer in Swift byte buffer
-internal func toBuffer(value: MDB_val) -> ByteBuffer {
-    return ByteBuffer(start: unsafeBitCast(value.mv_data, UnsafePointer<UInt8>.self), count: value.mv_size)
-}
+internal extension MDB_val {
+    /// Create an `MDB_val` from a byte buffer.
+    internal init(buffer: ByteBuffer) {
+        mv_size = buffer.count
+        mv_data = unsafeBitCast(buffer.baseAddress, UnsafeMutablePointer<Void>.self)
+    }
 
-/// Packages a byte buffer into an `MDB_val`.
-internal func fromBuffer(buffer: ByteBuffer) -> MDB_val {
-    return MDB_val(mv_size: buffer.count, mv_data: unsafeBitCast(buffer.baseAddress, UnsafeMutablePointer<Void>.self))
+    /// Extract a byte buffer from an `MDB_val`.
+    internal var buffer: ByteBuffer {
+        return ByteBuffer(start: unsafeBitCast(mv_data, UnsafePointer<UInt8>.self), count: mv_size)
+    }
 }

@@ -32,8 +32,8 @@ internal struct Database {
     /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.
     internal func put(key key: ByteBuffer, data: ByteBuffer) -> Result<(), ElephantError> {
         // The key and value buffers aren't modified for a put.
-        var keyVal = fromBuffer(key)
-        var dataVal = fromBuffer(data)
+        var keyVal = MDB_val(buffer: key)
+        var dataVal = MDB_val(buffer: data)
 
         let err = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
         guard err == 0 else {
@@ -46,7 +46,7 @@ internal struct Database {
     /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
     internal func get(key: ByteBuffer) -> Result<ByteBuffer, ElephantError> {
         // The key buffer isn't modified for a get.
-        var keyVal = fromBuffer(key)
+        var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val()
 
         let err = mdb_get(txn, dbi, &keyVal, &dataVal)
@@ -60,7 +60,7 @@ internal struct Database {
 
     /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
     internal func del(key: ByteBuffer) -> Result<(), ElephantError> {
-        var keyVal = fromBuffer(key)
+        var keyVal = MDB_val(buffer: key)
 
         // TODO Support for duplicates (MDB_SORTDUP)
         let err = mdb_del(txn, dbi, &keyVal, nil)

@@ -52,7 +52,7 @@ public final class Cursor {
             return .lmdbError(err)
         }
 
-        return .Success((toBuffer(_key), toBuffer(_data)))
+        return .Success((_key.buffer, _data.buffer))
     }
 
     private init(handle: COpaquePointer) {
