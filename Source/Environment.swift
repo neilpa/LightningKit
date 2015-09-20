@@ -19,29 +19,18 @@ public final class Environment {
             return .fsError(error)
         }
 
-        var handle: COpaquePointer = nil
-        var err = mdb_env_create(&handle)
-        guard err == 0 else {
-            return .lmdbError(err)
+        return lmdbTry(mdb_env_create).flatMap { handle in
+            lmdbTry(mdb_env_open(handle, path, 0, 0o600)).flatMap {
+                // Transaction.query
+                return query(handle) { txn in
+                    return lmdbTry(txn, nil, 0, mdb_dbi_open)
+                }
+                .map { dbi in
+                    self.init(handle: handle, dbi: dbi)
+                }
+                .on(failure: { _ in mdb_env_close(handle) })
+            }
         }
-
-        err = mdb_env_open(handle, path, 0, 0o600)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        // Temp transaction to open the primary database instance
-        return query(handle) { txn in
-            return lmdbTry(txn, nil, 0, mdb_dbi_open)
-        }
-        .analysis(
-            ifSuccess: { dbi in
-                return .Success(self.init(path: path, handle: handle, dbi: dbi))
-            },
-            ifFailure: { error in
-                mdb_env_close(handle)
-                return .Failure(error)
-            })
     }
 
     /// Opens a read-only transaction for querying the database. If `fn` succeeds the
@@ -50,8 +39,7 @@ public final class Environment {
         return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
             .transact(fn,
                 commit: {
-                    let err = mdb_txn_commit($0)
-                    return err != 0 ? .LMDB(err) : nil
+                    return lmdbTry(mdb_txn_commit($0)).error
                 },
                 abort: mdb_txn_abort)
     }
@@ -70,19 +58,15 @@ public final class Environment {
         return info
     }
 
-    /// The directory path to this environment.
-    public let path: String
-
     /// The LMDB environment handle.
     internal let handle: COpaquePointer
 
     /// The root (e.g. unamed) database for this enviroment.
-    internal let dbi: MDB_dbi
+    internal let db: Database
 
-    private init(path: String, handle: COpaquePointer, dbi: MDB_dbi) {
-        self.path = path
+    private init(handle: COpaquePointer, dbi: MDB_dbi) {
         self.handle = handle
-        self.dbi = dbi
+        db = Database(dbi: dbi)
     }
 
     deinit {

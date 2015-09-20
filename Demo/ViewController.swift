@@ -27,7 +27,7 @@ class ViewController: UICollectionViewController {
         store = Store(env: env)
         items = Array(count: env.stat().ms_entries, repeatedValue: ("", ""))
 
-        let item = ("key2", "data2")
+        let item = ("key3", "data3")
         print("putting \(item)")
 
         items.append(item)
@@ -58,7 +58,7 @@ class ViewController: UICollectionViewController {
         if indexPath.section == 0 {
             // Delete the tapped item
         } else {
-            let item = ("key", "data")
+            let item = ("key3", "data3")
             print("putting \(item)")
 
             items.append(item)

@@ -17,6 +17,20 @@ internal extension Result {
         return .Failure(.FileSystem(error))
     }
 
+    /// Inject effects without changing the result.
+    internal func on(success: T -> () = { _ in }, failure: Error -> () = { _ in }) -> Result {
+        return analysis(
+            ifSuccess: { value in
+                success(value)
+                return .Success(value)
+            },
+            ifFailure: { error in
+                failure(error)
+                return .Failure(error)
+            }
+        )
+    }
+
     /// Helper for consuming a "resource" with transactional semantics.
     internal func transact<U>(consume: T -> Result<U, Error>, commit: T -> Error?, abort: T -> ()) -> Result<U, Error> {
         return flatMap { resource in
@@ -34,6 +48,12 @@ internal extension Result {
             )
         }
     }
+}
+
+internal func lmdbTry(fn: UnsafeMutablePointer<COpaquePointer> -> Int32) -> Result<COpaquePointer, LightningError> {
+    var out: COpaquePointer = nil
+    let err = fn(&out)
+    return err == 0 ? .Success(out) : .lmdbError(err)
 }
 
 internal func lmdbTry<A, B>(a: A, _ b: B, _ fn: (A, B, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, LightningError> {

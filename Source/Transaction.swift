@@ -9,13 +9,17 @@ import Result
 /// Opaque wrapper for an LMDB transaction.
 public final class Transaction {
     internal let handle: COpaquePointer
-    internal let env: Environment
+    internal let dbi: MDB_dbi
 
     /// Start a new transaction in the given `environment`.
-    public static func begin(env: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, LightningError> {
+    public static func begin(env: Environment, parent: Transaction? = nil, writeable: Bool = false, db: Database? = nil) -> Result<Transaction, LightningError> {
         let flags = writeable ? 0 : UInt32(MDB_RDONLY)
-        return lmdbTry(env.handle, parent?.handle ?? nil, flags, mdb_txn_begin).map {
-            return self.init(env: env, handle: $0)
+        return begin(env.handle, parent?.handle ?? nil, flags, db?.dbi ?? env.db.dbi)
+    }
+
+    internal static func begin(envHandle: COpaquePointer, _ parentHandle: COpaquePointer, _ flags: UInt32, _ dbi: MDB_dbi) -> Result<Transaction, LightningError> {
+        return lmdbTry(envHandle, parentHandle, flags, mdb_txn_begin).map {
+            return Transaction(handle: $0, dbi: dbi)
         }
     }
 
@@ -40,7 +44,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val(buffer: data)
 
-        let err = mdb_put(handle, env.dbi, &keyVal, &dataVal, 0)
+        let err = mdb_put(handle, dbi, &keyVal, &dataVal, 0)
         guard err == 0 else {
             return .lmdbError(err)
         }
@@ -54,7 +58,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val()
 
-        let err = mdb_get(handle, env.dbi, &keyVal, &dataVal)
+        let err = mdb_get(handle, dbi, &keyVal, &dataVal)
         guard err == 0 else {
             return .lmdbError(err)
         }
@@ -68,7 +72,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
 
         // TODO Support for duplicates (MDB_SORTDUP)
-        let err = mdb_del(handle, env.dbi, &keyVal, nil)
+        let err = mdb_del(handle, dbi, &keyVal, nil)
         guard err == 0 else {
             return .lmdbError(err)
         }
@@ -76,9 +80,9 @@ public final class Transaction {
         return .Success()
     }
 
-    private init(env: Environment, handle: COpaquePointer) {
-        self.env = env
+    private init(handle: COpaquePointer, dbi: MDB_dbi) {
         self.handle = handle
+        self.dbi = dbi
     }
 
     deinit {

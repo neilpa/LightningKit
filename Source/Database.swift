@@ -12,12 +12,16 @@ public struct Database {
     internal let dbi: MDB_dbi
 
     /// Open the default database
-    internal static func open(txn: COpaquePointer) -> Result<Database, LightningError> {
-        return lmdbTry(txn, nil, 0, mdb_dbi_open).map(self.init)
+    public static func open(txn: Transaction) -> Result<Database, LightningError> {
+        return lmdbTry(txn.handle, nil, 0, mdb_dbi_open).map(self.init)
     }
 
     /// Open a named database in the given transaction.
-    internal static func open(txn: COpaquePointer, name: String) -> Result<Database, LightningError> {
-        return lmdbTry(txn, name, 0, mdb_dbi_open).map(self.init)
+    internal static func open(txn: Transaction, name: String) -> Result<Database, LightningError> {
+        return lmdbTry(txn.handle, name, 0, mdb_dbi_open).map(self.init)
+    }
+
+    internal init(dbi: MDB_dbi) {
+        self.dbi = dbi
     }
 }

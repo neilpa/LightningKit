@@ -12,8 +12,8 @@ public final class Cursor {
     internal let handle: COpaquePointer
 
     /// Open a cursor to operate against the database.
-    internal static func open(txn: Transaction) -> Result<Cursor, LightningError> {
-        return lmdbTry(txn.handle, txn.env.dbi, mdb_cursor_open).map(self.init)
+    public static func open(txn: Transaction, db: Database? = nil) -> Result<Cursor, LightningError> {
+        return lmdbTry(txn.handle, db?.dbi ?? txn.dbi, mdb_cursor_open).map(self.init)
     }
 
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
