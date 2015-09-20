@@ -14,7 +14,7 @@ public final class Cursor {
     /// Open a cursor to operate against the database.
     public static func open(txn: Transaction, db: Database? = nil) -> Result<Cursor, LightningError> {
         var handle: COpaquePointer = nil
-        return lmdbTry(mdb_cursor_open(txn.handle, db?.dbi ?? txn.dbi, &handle))
+        return mdbTry(mdb_cursor_open(txn.handle, db?.dbi ?? txn.dbi, &handle))
             .map { _ in self.init(handle: handle) }
     }
 
@@ -42,7 +42,7 @@ public final class Cursor {
         // TODO Stupid multi-value out params that are ordered badly
         let err = mdb_cursor_get(handle, &_key, &_data, op)
         if err != 0 {
-            return .lmdbError(err)
+            return .mdbError(err)
         }
 
         return .Success((_key.buffer, _data.buffer))

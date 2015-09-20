@@ -8,7 +8,7 @@ import Result
 
 internal extension Result {
     /// Convenience function for wrapping an LMDB error.
-    internal static func lmdbError(code: Int32) -> Result<T, LightningError> {
+    internal static func mdbError(code: Int32) -> Result<T, LightningError> {
         return .Failure(.LMDB(code))
     }
 
@@ -50,6 +50,6 @@ internal extension Result {
     }
 }
 
-internal func lmdbTry(errorCode: Int32) -> Result<(), LightningError> {
-    return errorCode == 0 ? .Success() : .lmdbError(errorCode)
+internal func mdbTry(errorCode: Int32) -> Result<(), LightningError> {
+    return errorCode == 0 ? .Success() : .mdbError(errorCode)
 }

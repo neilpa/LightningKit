@@ -19,7 +19,7 @@ public final class Transaction {
 
     internal static func begin(envHandle: COpaquePointer, _ parentHandle: COpaquePointer, _ flags: UInt32, _ dbi: MDB_dbi) -> Result<Transaction, LightningError> {
         var handle: COpaquePointer = nil
-        return lmdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle))
+        return mdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle))
             .map { _ in Transaction(handle: handle, dbi: dbi) }
     }
 
@@ -27,7 +27,7 @@ public final class Transaction {
     public func commit() -> Result<(), LightningError> {
         let err = mdb_txn_commit(handle)
         guard err == 0 else {
-            return .lmdbError(err)
+            return .mdbError(err)
         }
 
         return .Success()
@@ -46,7 +46,7 @@ public final class Transaction {
 
         let err = mdb_put(handle, dbi, &keyVal, &dataVal, 0)
         guard err == 0 else {
-            return .lmdbError(err)
+            return .mdbError(err)
         }
 
         return .Success()
@@ -60,7 +60,7 @@ public final class Transaction {
 
         let err = mdb_get(handle, dbi, &keyVal, &dataVal)
         guard err == 0 else {
-            return .lmdbError(err)
+            return .mdbError(err)
         }
 
         let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
@@ -74,7 +74,7 @@ public final class Transaction {
         // TODO Support for duplicates (MDB_SORTDUP)
         let err = mdb_del(handle, dbi, &keyVal, nil)
         guard err == 0 else {
-            return .lmdbError(err)
+            return .mdbError(err)
         }
 
         return .Success()
