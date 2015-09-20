@@ -39,13 +39,8 @@ public final class Cursor {
     }
 
     private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), LightningError> {
-        // TODO Stupid multi-value out params that are ordered badly
-        let err = mdb_cursor_get(handle, &_key, &_data, op)
-        if err != 0 {
-            return .mdbError(err)
-        }
-
-        return .Success((_key.buffer, _data.buffer))
+        return mdbTry(mdb_cursor_get(handle, &_key, &_data, op))
+            .map { _ in (_key.buffer, _data.buffer) }
     }
 
     private init(handle: COpaquePointer) {

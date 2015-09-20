@@ -25,12 +25,7 @@ public final class Transaction {
 
     /// Commits changes executed during this transaction.
     public func commit() -> Result<(), LightningError> {
-        let err = mdb_txn_commit(handle)
-        guard err == 0 else {
-            return .mdbError(err)
-        }
-
-        return .Success()
+        return mdbTry(mdb_txn_commit(handle))
     }
 
     /// Aborts any changes executed during this transaction.
@@ -44,12 +39,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val(buffer: data)
 
-        let err = mdb_put(handle, dbi, &keyVal, &dataVal, 0)
-        guard err == 0 else {
-            return .mdbError(err)
-        }
-
-        return .Success()
+        return mdbTry(mdb_put(handle, dbi, &keyVal, &dataVal, 0))
     }
 
     /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
@@ -58,13 +48,10 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val()
 
-        let err = mdb_get(handle, dbi, &keyVal, &dataVal)
-        guard err == 0 else {
-            return .mdbError(err)
+        return mdbTry(mdb_get(handle, dbi, &keyVal, &dataVal)).map { _ in
+            let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
+            return ByteBuffer(start: data, count: dataVal.mv_size)
         }
-
-        let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
-        return .Success(ByteBuffer(start: data, count: dataVal.mv_size))
     }
 
     /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
@@ -72,12 +59,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
 
         // TODO Support for duplicates (MDB_SORTDUP)
-        let err = mdb_del(handle, dbi, &keyVal, nil)
-        guard err == 0 else {
-            return .mdbError(err)
-        }
-
-        return .Success()
+        return mdbTry(mdb_del(handle, dbi, &keyVal, nil))
     }
 
     private init(handle: COpaquePointer, dbi: MDB_dbi) {
