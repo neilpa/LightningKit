@@ -7,60 +7,17 @@ import LMDB
 import Result
 
 /// Opaque wrapper for an LMDB database instance.
-internal struct Database {
-    /// The handle to the transaction
-    internal let txn: COpaquePointer
-
+public struct Database {
     /// The wrapped database instance
     internal let dbi: MDB_dbi
 
+    /// Open the default database
+    internal static func open(txn: COpaquePointer) -> Result<Database, LightningError> {
+        return lmdbTry(txn, nil, 0, mdb_dbi_open).map(self.init)
+    }
+
     /// Open a named database in the given transaction.
-    internal static func open(transaction: Transaction, name: String? = nil) -> Result<Database, LightningError> {
-        let txn = transaction.handle
-        return lmdbTry(txn, nil, 0, mdb_dbi_open).map {
-            return Database(txn: txn, dbi: $0)
-        }
-    }
-
-    /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.
-    internal func put(key key: ByteBuffer, data: ByteBuffer) -> Result<(), LightningError> {
-        // The key and value buffers aren't modified for a put.
-        var keyVal = MDB_val(buffer: key)
-        var dataVal = MDB_val(buffer: data)
-
-        let err = mdb_put(txn, dbi, &keyVal, &dataVal, 0)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        return .Success()
-    }
-
-    /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
-    internal func get(key: ByteBuffer) -> Result<ByteBuffer, LightningError> {
-        // The key buffer isn't modified for a get.
-        var keyVal = MDB_val(buffer: key)
-        var dataVal = MDB_val()
-
-        let err = mdb_get(txn, dbi, &keyVal, &dataVal)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
-        return .Success(ByteBuffer(start: data, count: dataVal.mv_size))
-    }
-
-    /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
-    internal func del(key: ByteBuffer) -> Result<(), LightningError> {
-        var keyVal = MDB_val(buffer: key)
-
-        // TODO Support for duplicates (MDB_SORTDUP)
-        let err = mdb_del(txn, dbi, &keyVal, nil)
-        guard err == 0 else {
-            return .lmdbError(err)
-        }
-
-        return .Success()
+    internal static func open(txn: COpaquePointer, name: String) -> Result<Database, LightningError> {
+        return lmdbTry(txn, name, 0, mdb_dbi_open).map(self.init)
     }
 }

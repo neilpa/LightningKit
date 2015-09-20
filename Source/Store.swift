@@ -27,9 +27,8 @@ public final class Store {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 
-        let dbi = Database.open(txn).value!
         return key.withUnsafeBufferPointer { keyBuffer in
-            let value: ByteBuffer = dbi.get(keyBuffer).value!
+            let value: ByteBuffer = txn.get(keyBuffer).value!
             let string = String(bytes: value, encoding: NSUTF8StringEncoding)
             return string.map(Result.Success) ?? .Failure(.Decode(""))
         }
@@ -40,10 +39,9 @@ public final class Store {
         let txn = Transaction.begin(env, writeable: true).value!
         defer { txn.commit() }
 
-        let dbi = Database.open(txn).value!
         return key.withUnsafeBufferPointer { keyBuffer in
         return value.withUnsafeBufferPointer { valueBuffer in
-            return dbi.put(key: keyBuffer, data: valueBuffer)
+            return txn.put(key: keyBuffer, data: valueBuffer)
         } }
     }
 }
