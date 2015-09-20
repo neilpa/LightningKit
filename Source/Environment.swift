@@ -19,8 +19,9 @@ public final class Environment {
             return .fsError(error)
         }
 
-        return lmdbTry(mdb_env_create).flatMap { handle in
-            lmdbTry(mdb_env_open(handle, path, 0, 0o600)).flatMap { _ in
+        var h: COpaquePointer = nil
+        return lmdbTry(mdb_env_create(&h), h).flatMap { handle in
+            lmdbTry(mdb_env_open(handle, path, 0, 0o600), handle).flatMap { _ in
                 // Transaction.query
                 return query(handle) { txn in
                     return lmdbTry(txn, nil, 0, mdb_dbi_open)
@@ -37,7 +38,7 @@ public final class Environment {
         return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
             .transact(fn,
                 commit: {
-                    return lmdbTry(mdb_txn_commit($0)).error
+                    return lmdbTry(mdb_txn_commit($0), ()).error
                 },
                 abort: mdb_txn_abort)
     }
