@@ -18,7 +18,7 @@ internal extension Result {
     }
 
     /// Inject effects without changing the result.
-    internal func on(success: T -> () = { _ in }, failure: Error -> () = { _ in }) -> Result {
+    internal func on(success success: T -> () = { _ in }, failure: Error -> () = { _ in }) -> Result {
         return analysis(
             ifSuccess: { value in
                 success(value)

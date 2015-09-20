@@ -16,10 +16,10 @@ public final class Store {
     }
 
     public func dump() -> Result<[(String, String)], LightningError> {
-        return Environment.query(env.handle) { txn in
+//        return Environment.query(env.handle) { txn in
             let values: [(String, String)] = []
             return .Success(values)
-        }
+//        }
     }
 
     /// Get a string from the key/value store
