@@ -22,6 +22,22 @@
 		D8CE175B1BAE2EE000DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
 		D8CE175C1BAE2EE000DE22DA /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D8CE175D1BAE2F8900DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
+		D8CE176D1BAE376000DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17631BAE375F00DE22DA /* LightningKit.framework */; settings = {ASSET_TAGS = (); }; };
+		D8CE177A1BAE379C00DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE177B1BAE37A300DE22DA /* LightningKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* LightningKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D8CE177C1BAE37AA00DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE177D1BAE37AA00DE22DA /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE177E1BAE37AA00DE22DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE177F1BAE37AA00DE22DA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17801BAE37AA00DE22DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17811BAE37AA00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17821BAE37AA00DE22DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17831BAE37AA00DE22DA /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17861BAE385500DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
+		D8CE17871BAE385500DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
+		D8CE178B1BAE387600DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
+		D8CE178C1BAE387600DE22DA /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
+		D8CE178D1BAE38BE00DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -31,6 +47,13 @@
 			containerPortal = D87666471B76660D00027E54 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D876664F1B76660D00027E54;
+			remoteInfo = LightningKit;
+		};
+		D8CE176E1BAE376000DE22DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D87666471B76660D00027E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8CE17621BAE375F00DE22DA;
 			remoteInfo = LightningKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -44,6 +67,17 @@
 			files = (
 				D8CE175B1BAE2EE000DE22DA /* LMDB.framework in CopyFiles */,
 				D8CE175C1BAE2EE000DE22DA /* Result.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17881BAE385F00DE22DA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				D8CE178B1BAE387600DE22DA /* LMDB.framework in CopyFiles */,
+				D8CE178C1BAE387600DE22DA /* Result.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +99,10 @@
 		D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
 		D8CE17341BAE256B00DE22DA /* LMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDB.framework; path = Carthage/Build/Mac/LMDB.framework; sourceTree = "<group>"; };
 		D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LightningKitTests-Mac.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CE17631BAE375F00DE22DA /* LightningKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LightningKitTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CE17841BAE385500DE22DA /* LMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDB.framework; path = Carthage/Build/iOS/LMDB.framework; sourceTree = "<group>"; };
+		D8CE17851BAE385500DE22DA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		D8EF54D31BAD1331007EF9DA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,12 +125,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8CE175F1BAE375F00DE22DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE17861BAE385500DE22DA /* LMDB.framework in Frameworks */,
+				D8CE17871BAE385500DE22DA /* Result.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17691BAE375F00DE22DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE178D1BAE38BE00DE22DA /* Result.framework in Frameworks */,
+				D8CE176D1BAE376000DE22DA /* LightningKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		D80792981B799A89002D424A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D8CE17841BAE385500DE22DA /* LMDB.framework */,
+				D8CE17851BAE385500DE22DA /* Result.framework */,
 				D8CE17341BAE256B00DE22DA /* LMDB.framework */,
 				D80792921B799A41002D424A /* Result.framework */,
 			);
@@ -114,6 +172,8 @@
 			children = (
 				D87666501B76660D00027E54 /* LightningKit.framework */,
 				D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */,
+				D8CE17631BAE375F00DE22DA /* LightningKit.framework */,
+				D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +212,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D87666561B76660D00027E54 /* LightningKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17601BAE375F00DE22DA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE177B1BAE37A300DE22DA /* LightningKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,6 +262,42 @@
 			productReference = D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D8CE17621BAE375F00DE22DA /* LightningKit-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8CE17781BAE376000DE22DA /* Build configuration list for PBXNativeTarget "LightningKit-iOS" */;
+			buildPhases = (
+				D8CE175E1BAE375F00DE22DA /* Sources */,
+				D8CE175F1BAE375F00DE22DA /* Frameworks */,
+				D8CE17601BAE375F00DE22DA /* Headers */,
+				D8CE17611BAE375F00DE22DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "LightningKit-iOS";
+			productName = LightningKit;
+			productReference = D8CE17631BAE375F00DE22DA /* LightningKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D8CE176B1BAE375F00DE22DA /* LightningKitTests-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8CE17791BAE376000DE22DA /* Build configuration list for PBXNativeTarget "LightningKitTests-iOS" */;
+			buildPhases = (
+				D8CE17681BAE375F00DE22DA /* Sources */,
+				D8CE17691BAE375F00DE22DA /* Frameworks */,
+				D8CE17881BAE385F00DE22DA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8CE176F1BAE376000DE22DA /* PBXTargetDependency */,
+			);
+			name = "LightningKitTests-iOS";
+			productName = LightningKitTests;
+			productReference = D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -208,6 +312,12 @@
 						CreatedOnToolsVersion = 7.0;
 					};
 					D8CE174B1BAE2E7A00DE22DA = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					D8CE17621BAE375F00DE22DA = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					D8CE176B1BAE375F00DE22DA = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
@@ -226,12 +336,21 @@
 			targets = (
 				D876664F1B76660D00027E54 /* LightningKit-Mac */,
 				D8CE174B1BAE2E7A00DE22DA /* LightningKitTests-Mac */,
+				D8CE17621BAE375F00DE22DA /* LightningKit-iOS */,
+				D8CE176B1BAE375F00DE22DA /* LightningKitTests-iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D876664E1B76660D00027E54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17611BAE375F00DE22DA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -264,6 +383,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8CE175E1BAE375F00DE22DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE17821BAE37AA00DE22DA /* Store.swift in Sources */,
+				D8CE17811BAE37AA00DE22DA /* Result.swift in Sources */,
+				D8CE17831BAE37AA00DE22DA /* Transaction.swift in Sources */,
+				D8CE177E1BAE37AA00DE22DA /* Database.swift in Sources */,
+				D8CE177F1BAE37AA00DE22DA /* Environment.swift in Sources */,
+				D8CE177C1BAE37AA00DE22DA /* ByteBuffer.swift in Sources */,
+				D8CE17801BAE37AA00DE22DA /* Error.swift in Sources */,
+				D8CE177D1BAE37AA00DE22DA /* Cursor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17681BAE375F00DE22DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE177A1BAE379C00DE22DA /* LightningKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -271,6 +413,11 @@
 			isa = PBXTargetDependency;
 			target = D876664F1B76660D00027E54 /* LightningKit-Mac */;
 			targetProxy = D8CE17521BAE2E7A00DE22DA /* PBXContainerItemProxy */;
+		};
+		D8CE176F1BAE376000DE22DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8CE17621BAE375F00DE22DA /* LightningKit-iOS */;
+			targetProxy = D8CE176E1BAE376000DE22DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -444,6 +591,92 @@
 			};
 			name = Release;
 		};
+		D8CE17741BAE376000DE22DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKit;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D8CE17751BAE376000DE22DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Source/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKit;
+				PRODUCT_NAME = "$(PROJECT_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D8CE17761BAE376000DE22DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D8CE17771BAE376000DE22DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +706,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D8CE17781BAE376000DE22DA /* Build configuration list for PBXNativeTarget "LightningKit-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8CE17741BAE376000DE22DA /* Debug */,
+				D8CE17751BAE376000DE22DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D8CE17791BAE376000DE22DA /* Build configuration list for PBXNativeTarget "LightningKitTests-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8CE17761BAE376000DE22DA /* Debug */,
+				D8CE17771BAE376000DE22DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
