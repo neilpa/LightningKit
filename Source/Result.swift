@@ -50,7 +50,6 @@ internal extension Result {
     }
 }
 
-internal func lmdbTry<T>(errorCode: Int32, @autoclosure _ value: () -> T) -> Result<T, LightningError> {
-    guard errorCode == 0 else { return .lmdbError(errorCode) }
-    return .Success(value())
+internal func lmdbTry(errorCode: Int32) -> Result<(), LightningError> {
+    return errorCode == 0 ? .Success() : .lmdbError(errorCode)
 }

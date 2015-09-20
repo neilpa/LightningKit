@@ -19,9 +19,8 @@ public final class Transaction {
 
     internal static func begin(envHandle: COpaquePointer, _ parentHandle: COpaquePointer, _ flags: UInt32, _ dbi: MDB_dbi) -> Result<Transaction, LightningError> {
         var handle: COpaquePointer = nil
-        return lmdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle), handle).map {
-            return Transaction(handle: $0, dbi: dbi)
-        }
+        return lmdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle))
+            .map { _ in Transaction(handle: handle, dbi: dbi) }
     }
 
     /// Commits changes executed during this transaction.

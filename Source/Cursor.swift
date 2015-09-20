@@ -14,7 +14,8 @@ public final class Cursor {
     /// Open a cursor to operate against the database.
     public static func open(txn: Transaction, db: Database? = nil) -> Result<Cursor, LightningError> {
         var handle: COpaquePointer = nil
-        return lmdbTry(mdb_cursor_open(txn.handle, db?.dbi ?? txn.dbi, &handle), handle).map(self.init)
+        return lmdbTry(mdb_cursor_open(txn.handle, db?.dbi ?? txn.dbi, &handle))
+            .map { _ in self.init(handle: handle) }
     }
 
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`

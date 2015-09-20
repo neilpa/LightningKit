@@ -19,28 +19,28 @@ public final class Environment {
             return .fsError(error)
         }
 
-        var h: COpaquePointer = nil
-        return lmdbTry(mdb_env_create(&h), h).flatMap { handle in
-            lmdbTry(mdb_env_open(handle, path, 0, 0o600), handle).flatMap { _ in
-                // Transaction.query
+        var handle: COpaquePointer = nil
+        return lmdbTry(mdb_env_create(&handle))
+            .flatMap { _ in lmdbTry(mdb_env_open(handle, path, 0, 0o600)) }
+            .flatMap { _ in
                 return query(handle) { txn in
                     var dbi = MDB_dbi()
-                    return lmdbTry(mdb_dbi_open(txn, nil, 0, &dbi), dbi)
+                    return lmdbTry(mdb_dbi_open(txn, nil, 0, &dbi))
+                        .map { Environment(handle: handle, dbi: dbi) }
                 }
-                .map { Environment(handle: handle, dbi: $0) }
-                .on(failure: { _ in mdb_env_close(handle) })
             }
-        }
+            .on(failure: { _ in mdb_env_close(handle) })
     }
 
     /// Opens a read-only transaction for querying the database. If `fn` succeeds the
     /// transaction will be committed, otherwise it's aborted.
     internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, LightningError>) -> Result<T, LightningError> {
         var txnHandle: COpaquePointer = nil
-        return lmdbTry(mdb_txn_begin(env, nil, UInt32(MDB_RDONLY), &txnHandle), txnHandle)
+        return lmdbTry(mdb_txn_begin(env, nil, UInt32(MDB_RDONLY), &txnHandle))
+            .map { _ in txnHandle }
             .transact(fn,
                 commit: {
-                    return lmdbTry(mdb_txn_commit($0), ()).error
+                    return lmdbTry(mdb_txn_commit($0)).error
                 },
                 abort: mdb_txn_abort)
     }
