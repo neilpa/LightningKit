@@ -16,7 +16,7 @@ public final class Store {
     }
 
     /// Get a string from the key/value store
-    public func get(key: String) -> Result<String, ElephantError> {
+    public func get(key: String) -> Result<String, LightningError> {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 
@@ -29,7 +29,7 @@ public final class Store {
     }
 
     /// Put a string in the key/value store
-    public func put(key: String, _ value: String) -> Result<(), ElephantError> {
+    public func put(key: String, _ value: String) -> Result<(), LightningError> {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 

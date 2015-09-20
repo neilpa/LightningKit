@@ -12,31 +12,31 @@ public final class Cursor {
     internal let handle: COpaquePointer
 
     /// Open a cursor to operate against the database.
-    internal static func open(database: Database) -> Result<Cursor, ElephantError> {
+    internal static func open(database: Database) -> Result<Cursor, LightningError> {
         return lmdbTry(database.txn, database.dbi, mdb_cursor_open).map(self.init)
     }
 
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
-    public func next() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+    public func next() -> Result<(ByteBuffer, ByteBuffer), LightningError> {
         return cursorOp(MDB_NEXT)
     }
 
     /// Position the cursor at the previous key. Equivalent `mdb_cursor_get(MDB_PREV).`
-    public func prev() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+    public func prev() -> Result<(ByteBuffer, ByteBuffer), LightningError> {
         return cursorOp(MDB_PREV)
     }
 
     /// Position the cursor at the first key. Equivalent `mdb_cursor_get(MDB_FIRST).`
-    public func first() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+    public func first() -> Result<(ByteBuffer, ByteBuffer), LightningError> {
         return cursorOp(MDB_FIRST)
     }
 
     /// Position the cursor at the last key. Equivalent `mdb_cursor_get(MDB_LAST).`
-    public func last() -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+    public func last() -> Result<(ByteBuffer, ByteBuffer), LightningError> {
         return cursorOp(MDB_LAST)
     }
 
-    private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), ElephantError> {
+    private func cursorOp(op: MDB_cursor_op) -> Result<(ByteBuffer, ByteBuffer), LightningError> {
         // TODO Stupid multi-value out params that are ordered badly
         let err = mdb_cursor_get(handle, &_key, &_data, op)
         if err != 0 {

@@ -11,7 +11,7 @@ import Result
 public final class Environment {
 
     /// Open or create an LMDB environment at `path`.
-    public static func open(path: String) -> Result<Environment, ElephantError> {
+    public static func open(path: String) -> Result<Environment, LightningError> {
         let fs = NSFileManager.defaultManager()
         do {
             try fs.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
@@ -46,7 +46,7 @@ public final class Environment {
 
     /// Opens a read-only transaction for querying the database. If `fn` succeeds the
     /// transaction will be committed, otherwise it's aborted.
-    internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, ElephantError>) -> Result<T, ElephantError> {
+    internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, LightningError>) -> Result<T, LightningError> {
         return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
             .transact(fn,
                 commit: {

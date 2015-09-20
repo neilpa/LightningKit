@@ -8,12 +8,12 @@ import Result
 
 internal extension Result {
     /// Convenience function for wrapping an LMDB error.
-    internal static func lmdbError(code: Int32) -> Result<T, ElephantError> {
+    internal static func lmdbError(code: Int32) -> Result<T, LightningError> {
         return .Failure(.LMDB(code))
     }
 
     /// Convenience function for wrapping a file system error.
-    internal static func fsError(error: ErrorType) -> Result<T, ElephantError> {
+    internal static func fsError(error: ErrorType) -> Result<T, LightningError> {
         return .Failure(.FileSystem(error))
     }
 
@@ -36,29 +36,29 @@ internal extension Result {
     }
 }
 
-internal func lmdbTry<A, B>(a: A, _ b: B, _ fn: (A, B, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, ElephantError> {
+internal func lmdbTry<A, B>(a: A, _ b: B, _ fn: (A, B, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, LightningError> {
     var out: COpaquePointer = nil
     let err = fn(a, b, &out)
     return err == 0 ? .Success(out) : .lmdbError(err)
 }
 
-internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, ElephantError> {
+internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, LightningError> {
     var out: COpaquePointer = nil
     let err = fn(a, b, c, &out)
     return err == 0 ? .Success(out) : .lmdbError(err)
 }
 
-internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<MDB_dbi>) -> Int32) -> Result<MDB_dbi, ElephantError> {
+internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<MDB_dbi>) -> Int32) -> Result<MDB_dbi, LightningError> {
     var out = MDB_dbi()
     let err = fn(a, b, c, &out)
     return err == 0 ? .Success(out) : .lmdbError(err)
 }
 
-//internal func lmdbTry<T>(fn: UnsafeMutablePointer<T> -> Int32) -> Result<T, ElephantError> {
+//internal func lmdbTry<T>(fn: UnsafeMutablePointer<T> -> Int32) -> Result<T, LightningError> {
 //
 //}
 //
 
-internal func lmdbTry(err: Int32) -> Result<(), ElephantError> {
+internal func lmdbTry(err: Int32) -> Result<(), LightningError> {
     return err == 0 ? .Success() : .lmdbError(err)
 }

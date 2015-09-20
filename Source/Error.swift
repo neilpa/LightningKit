@@ -6,7 +6,7 @@
 import LMDB
 
 /// Packaged errors from different interactions.
-public enum ElephantError: ErrorType {
+public enum LightningError: ErrorType {
     /// File System operation failure.
     case FileSystem(ErrorType)
 
@@ -20,7 +20,7 @@ public enum ElephantError: ErrorType {
     case Unknown(ErrorType)
 }
 
-extension ElephantError: CustomStringConvertible {
+extension LightningError: CustomStringConvertible {
     public var description: String {
         switch self {
         case let .FileSystem(error):

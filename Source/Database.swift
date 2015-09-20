@@ -15,7 +15,7 @@ internal struct Database {
     internal let dbi: MDB_dbi
 
     /// Open a named database in the given transaction.
-    internal static func open(transaction: Transaction, name: String? = nil) -> Result<Database, ElephantError> {
+    internal static func open(transaction: Transaction, name: String? = nil) -> Result<Database, LightningError> {
         let txn = transaction.handle
         return lmdbTry(txn, nil, 0, mdb_dbi_open).map {
             return Database(txn: txn, dbi: $0)
@@ -23,7 +23,7 @@ internal struct Database {
     }
 
     /// Associates `data` with the provided `key`. This is a wrapper for `mdb_put`.
-    internal func put(key key: ByteBuffer, data: ByteBuffer) -> Result<(), ElephantError> {
+    internal func put(key key: ByteBuffer, data: ByteBuffer) -> Result<(), LightningError> {
         // The key and value buffers aren't modified for a put.
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val(buffer: data)
@@ -37,7 +37,7 @@ internal struct Database {
     }
 
     /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
-    internal func get(key: ByteBuffer) -> Result<ByteBuffer, ElephantError> {
+    internal func get(key: ByteBuffer) -> Result<ByteBuffer, LightningError> {
         // The key buffer isn't modified for a get.
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val()
@@ -52,7 +52,7 @@ internal struct Database {
     }
 
     /// Deletes the `key` and associated `data` from the database. This is a wrapper for `mdb_del`.
-    internal func del(key: ByteBuffer) -> Result<(), ElephantError> {
+    internal func del(key: ByteBuffer) -> Result<(), LightningError> {
         var keyVal = MDB_val(buffer: key)
 
         // TODO Support for duplicates (MDB_SORTDUP)

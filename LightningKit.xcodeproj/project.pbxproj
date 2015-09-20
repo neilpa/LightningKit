@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
-		D80792971B799A7A002D424A /* Result.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* ElephantTests.swift */; };
 		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
-		D87666561B76660D00027E54 /* Elephant.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* Elephant.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* Elephant.framework */; };
+		D87666561B76660D00027E54 /* LightningKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* LightningKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8A0CB3B1BA6406C00D43E17 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
 		D8A0CB3F1BA6502400D43E17 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; settings = {ASSET_TAGS = (); }; };
 		D8A0CB411BA653E400D43E17 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; settings = {ASSET_TAGS = (); }; };
@@ -20,43 +17,45 @@
 		D8CE16F71BADD6DC00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE16F91BADDDF700DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
 		D8CE17351BAE256B00DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
-		D8CE17361BAE259200DE22DA /* LMDB.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
+		D8CE17511BAE2E7A00DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* LightningKit.framework */; settings = {ASSET_TAGS = (); }; };
+		D8CE17571BAE2E8800DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE175B1BAE2EE000DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
+		D8CE175C1BAE2EE000DE22DA /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
+		D8CE175D1BAE2F8900DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D876665D1B76660D00027E54 /* PBXContainerItemProxy */ = {
+		D8CE17521BAE2E7A00DE22DA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D87666471B76660D00027E54 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = D876664F1B76660D00027E54;
-			remoteInfo = Elephant;
+			remoteInfo = LightningKit;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D80792951B799A73002D424A /* Copy Files */ = {
+		D8CE175A1BAE2ED400DE22DA /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				D8CE17361BAE259200DE22DA /* LMDB.framework in Copy Files */,
-				D80792971B799A7A002D424A /* Result.framework in Copy Files */,
+				D8CE175B1BAE2EE000DE22DA /* LMDB.framework in CopyFiles */,
+				D8CE175C1BAE2EE000DE22DA /* Result.framework in CopyFiles */,
 			);
-			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		D80792921B799A41002D424A /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
-		D826D9891B79C3A100BC6D32 /* ElephantTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElephantTests.swift; sourceTree = "<group>"; };
+		D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LightningKitTests.swift; sourceTree = "<group>"; };
 		D826D98B1B79C75900BC6D32 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		D87666501B76660D00027E54 /* Elephant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elephant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D87666501B76660D00027E54 /* LightningKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LightningKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D87666541B76660D00027E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D87666551B76660D00027E54 /* Elephant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Elephant.h; sourceTree = "<group>"; };
-		D876665B1B76660D00027E54 /* ElephantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElephantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D87666551B76660D00027E54 /* LightningKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LightningKit.h; sourceTree = "<group>"; };
 		D87666621B76660D00027E54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8A0CB3A1BA6406C00D43E17 /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		D8A0CB3E1BA6502400D43E17 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		D8CE16F61BADD6DC00DE22DA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByteBuffer.swift; sourceTree = "<group>"; };
 		D8CE17341BAE256B00DE22DA /* LMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDB.framework; path = Carthage/Build/Mac/LMDB.framework; sourceTree = "<group>"; };
+		D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LightningKitTests-Mac.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8EF54D31BAD1331007EF9DA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,11 +78,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D87666581B76660D00027E54 /* Frameworks */ = {
+		D8CE17491BAE2E7A00DE22DA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D876665C1B76660D00027E54 /* Elephant.framework in Frameworks */,
+				D8CE175D1BAE2F8900DE22DA /* Result.framework in Frameworks */,
+				D8CE17511BAE2E7A00DE22DA /* LightningKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,8 +112,8 @@
 		D87666511B76660D00027E54 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D87666501B76660D00027E54 /* Elephant.framework */,
-				D876665B1B76660D00027E54 /* ElephantTests.xctest */,
+				D87666501B76660D00027E54 /* LightningKit.framework */,
+				D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -128,7 +129,7 @@
 				D8CE16F61BADD6DC00DE22DA /* Result.swift */,
 				D8EF54D31BAD1331007EF9DA /* Store.swift */,
 				D8A0CB3E1BA6502400D43E17 /* Transaction.swift */,
-				D87666551B76660D00027E54 /* Elephant.h */,
+				D87666551B76660D00027E54 /* LightningKit.h */,
 				D87666541B76660D00027E54 /* Info.plist */,
 			);
 			path = Source;
@@ -137,7 +138,7 @@
 		D876665F1B76660D00027E54 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D826D9891B79C3A100BC6D32 /* ElephantTests.swift */,
+				D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */,
 				D87666621B76660D00027E54 /* Info.plist */,
 			);
 			path = Tests;
@@ -150,16 +151,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D87666561B76660D00027E54 /* Elephant.h in Headers */,
+				D87666561B76660D00027E54 /* LightningKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		D876664F1B76660D00027E54 /* Elephant */ = {
+		D876664F1B76660D00027E54 /* LightningKit-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D87666651B76660D00027E54 /* Build configuration list for PBXNativeTarget "Elephant" */;
+			buildConfigurationList = D87666651B76660D00027E54 /* Build configuration list for PBXNativeTarget "LightningKit-Mac" */;
 			buildPhases = (
 				D876664B1B76660D00027E54 /* Sources */,
 				D876664C1B76660D00027E54 /* Frameworks */,
@@ -170,27 +171,27 @@
 			);
 			dependencies = (
 			);
-			name = Elephant;
-			productName = Elephant;
-			productReference = D87666501B76660D00027E54 /* Elephant.framework */;
+			name = "LightningKit-Mac";
+			productName = LightningKit;
+			productReference = D87666501B76660D00027E54 /* LightningKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		D876665A1B76660D00027E54 /* ElephantTests */ = {
+		D8CE174B1BAE2E7A00DE22DA /* LightningKitTests-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D87666681B76660D00027E54 /* Build configuration list for PBXNativeTarget "ElephantTests" */;
+			buildConfigurationList = D8CE17541BAE2E7A00DE22DA /* Build configuration list for PBXNativeTarget "LightningKitTests-Mac" */;
 			buildPhases = (
-				D87666571B76660D00027E54 /* Sources */,
-				D87666581B76660D00027E54 /* Frameworks */,
-				D80792951B799A73002D424A /* Copy Files */,
+				D8CE17481BAE2E7A00DE22DA /* Sources */,
+				D8CE17491BAE2E7A00DE22DA /* Frameworks */,
+				D8CE175A1BAE2ED400DE22DA /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D876665E1B76660D00027E54 /* PBXTargetDependency */,
+				D8CE17531BAE2E7A00DE22DA /* PBXTargetDependency */,
 			);
-			name = ElephantTests;
-			productName = ElephantTests;
-			productReference = D876665B1B76660D00027E54 /* ElephantTests.xctest */;
+			name = "LightningKitTests-Mac";
+			productName = LightningKitTests;
+			productReference = D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -206,12 +207,12 @@
 					D876664F1B76660D00027E54 = {
 						CreatedOnToolsVersion = 7.0;
 					};
-					D876665A1B76660D00027E54 = {
+					D8CE174B1BAE2E7A00DE22DA = {
 						CreatedOnToolsVersion = 7.0;
 					};
 				};
 			};
-			buildConfigurationList = D876664A1B76660D00027E54 /* Build configuration list for PBXProject "Elephant" */;
+			buildConfigurationList = D876664A1B76660D00027E54 /* Build configuration list for PBXProject "LightningKit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -223,8 +224,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D876664F1B76660D00027E54 /* Elephant */,
-				D876665A1B76660D00027E54 /* ElephantTests */,
+				D876664F1B76660D00027E54 /* LightningKit-Mac */,
+				D8CE174B1BAE2E7A00DE22DA /* LightningKitTests-Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -255,21 +256,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D87666571B76660D00027E54 /* Sources */ = {
+		D8CE17481BAE2E7A00DE22DA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D826D98A1B79C3A100BC6D32 /* ElephantTests.swift in Sources */,
+				D8CE17571BAE2E8800DE22DA /* LightningKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D876665E1B76660D00027E54 /* PBXTargetDependency */ = {
+		D8CE17531BAE2E7A00DE22DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D876664F1B76660D00027E54 /* Elephant */;
-			targetProxy = D876665D1B76660D00027E54 /* PBXContainerItemProxy */;
+			target = D876664F1B76660D00027E54 /* LightningKit-Mac */;
+			targetProxy = D8CE17521BAE2E7A00DE22DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -412,46 +413,33 @@
 			};
 			name = Release;
 		};
-		D87666691B76660D00027E54 /* Debug */ = {
+		D8CE17551BAE2E7A00DE22DA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/lmdb/0.9.14/lib,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.ElephantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		D876666A1B76660D00027E54 /* Release */ = {
+		D8CE17561BAE2E7A00DE22DA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					/usr/local/Cellar/lmdb/0.9.14/lib,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.ElephantTests;
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LightningKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -459,7 +447,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D876664A1B76660D00027E54 /* Build configuration list for PBXProject "Elephant" */ = {
+		D876664A1B76660D00027E54 /* Build configuration list for PBXProject "LightningKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D87666631B76660D00027E54 /* Debug */,
@@ -468,7 +456,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D87666651B76660D00027E54 /* Build configuration list for PBXNativeTarget "Elephant" */ = {
+		D87666651B76660D00027E54 /* Build configuration list for PBXNativeTarget "LightningKit-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D87666661B76660D00027E54 /* Debug */,
@@ -477,11 +465,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D87666681B76660D00027E54 /* Build configuration list for PBXNativeTarget "ElephantTests" */ = {
+		D8CE17541BAE2E7A00DE22DA /* Build configuration list for PBXNativeTarget "LightningKitTests-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D87666691B76660D00027E54 /* Debug */,
-				D876666A1B76660D00027E54 /* Release */,
+				D8CE17551BAE2E7A00DE22DA /* Debug */,
+				D8CE17561BAE2E7A00DE22DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

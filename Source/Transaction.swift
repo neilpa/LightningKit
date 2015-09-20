@@ -11,13 +11,13 @@ public final class Transaction {
     internal let handle: COpaquePointer
 
     /// Start a new transaction in the given `environment`.
-    public static func begin(environment: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, ElephantError> {
+    public static func begin(environment: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, LightningError> {
         let flags = writeable ? 0 : UInt32(MDB_RDONLY)
         return lmdbTry(environment.handle, parent?.handle ?? nil, flags, mdb_txn_begin).map(self.init)
     }
 
     /// Commits changes executed during this transaction.
-    public func commit() -> Result<(), ElephantError> {
+    public func commit() -> Result<(), LightningError> {
         let err = mdb_txn_commit(handle)
         guard err == 0 else {
             return .lmdbError(err)

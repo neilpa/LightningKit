@@ -3,13 +3,13 @@
 //  Copyright © 2015 Neil Pankey. All rights reserved.
 //
 
-@testable import Elephant
+@testable import LightningKit
 
 import XCTest
 import Result
 import Foundation
 
-class ElephantTests: XCTestCase {
+class LightningKitTests: XCTestCase {
 
     let path = "/tmp/lmdb-test"
     let fs = NSFileManager.defaultManager()
