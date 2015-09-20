@@ -7,11 +7,14 @@ import LMDB
 import Result
 
 internal extension Result {
-    /// Inject effects without changing the result.
-    internal func on(success success: T -> () = { _ in }, failure: Error -> () = { _ in }) -> Result {
+    /// Inject effects, generally for resource cleanup. The `success` case can optionally
+    /// return an `Error` to convert a succesful result into a failure if a "commit" fails.
+    internal func on(success success: T -> Error? = { _ in nil }, failure: Error -> () = { _ in }) -> Result {
         return analysis(
             ifSuccess: { value in
-                success(value)
+                if let error = success(value) {
+                    return .Failure(error)
+                }
                 return .Success(value)
             },
             ifFailure: { error in
@@ -19,24 +22,6 @@ internal extension Result {
                 return .Failure(error)
             }
         )
-    }
-
-    /// Helper for consuming a "resource" with transactional semantics.
-    internal func transact<U>(consume: T -> Result<U, Error>, commit: T -> Error?, abort: T -> ()) -> Result<U, Error> {
-        return flatMap { resource in
-            return consume(resource).analysis(
-                ifSuccess: { value in
-                    if let error = commit(resource) {
-                        return .Failure(error)
-                    }
-                    return Result<U, Error>.Success(value)
-                },
-                ifFailure: { error in
-                    abort(resource)
-                    return .Failure(error)
-                }
-            )
-        }
     }
 }
 

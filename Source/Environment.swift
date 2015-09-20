@@ -32,10 +32,9 @@ public final class Environment {
                             .map { _ in Environment(handle: handle, dbi: dbi) }
                             .on(failure: { _ in mdb_txn_abort(txn) })
                     }
-                    // TODO Failure here should propagate
-                    .on(success: { _ in mdb_txn_commit(txn) })
-                }
-//            .on(failure: { _ in mdb_env_close(handle) })
+                    .on(success: { _ in mdbTry(mdb_txn_commit(txn)).error })
+            }
+            .on(failure: { _ in mdb_env_close(handle) })
     }
 
 
