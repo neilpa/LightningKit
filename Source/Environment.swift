@@ -16,7 +16,7 @@ public final class Environment {
         do {
             try fs.createDirectoryAtPath(path, withIntermediateDirectories: true, attributes: nil)
         } catch let error {
-            return .fsError(error)
+            return .Failure(.FileSystem(error))
         }
 
         var handle: COpaquePointer = nil

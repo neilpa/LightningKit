@@ -7,16 +7,6 @@ import LMDB
 import Result
 
 internal extension Result {
-    /// Convenience function for wrapping an LMDB error.
-    internal static func mdbError(code: Int32) -> Result<T, LightningError> {
-        return .Failure(.LMDB(code))
-    }
-
-    /// Convenience function for wrapping a file system error.
-    internal static func fsError(error: ErrorType) -> Result<T, LightningError> {
-        return .Failure(.FileSystem(error))
-    }
-
     /// Inject effects without changing the result.
     internal func on(success success: T -> () = { _ in }, failure: Error -> () = { _ in }) -> Result {
         return analysis(
@@ -51,5 +41,5 @@ internal extension Result {
 }
 
 internal func mdbTry(errorCode: Int32) -> Result<(), LightningError> {
-    return errorCode == 0 ? .Success() : .mdbError(errorCode)
+    return errorCode == 0 ? .Success() : .Failure(.LMDB(errorCode))
 }
