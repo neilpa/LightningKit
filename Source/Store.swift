@@ -20,14 +20,6 @@ public final class Store {
             let values: [(String, String)] = []
             return .Success(values)
         }
-//        return Transaction.begin(env)
-//            .flatMap { txn in
-//                return txn.cursor()
-//            }
-//            .flatMap {
-//            }
-//
-//        return .Success(items)
     }
 
     /// Get a string from the key/value store
@@ -45,7 +37,7 @@ public final class Store {
 
     /// Put a string in the key/value store
     public func put(key: String, _ value: String) -> Result<(), LightningError> {
-        let txn = Transaction.begin(env).value!
+        let txn = Transaction.begin(env, writeable: true).value!
         defer { txn.commit() }
 
         let dbi = Database.open(txn).value!
