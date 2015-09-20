@@ -38,6 +38,11 @@
 		D8CE178B1BAE387600DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
 		D8CE178C1BAE387600DE22DA /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
 		D8CE178D1BAE38BE00DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
+		D8CE17951BAE3AAA00DE22DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE17941BAE3AAA00DE22DA /* AppDelegate.swift */; };
+		D8CE17971BAE3AAA00DE22DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE17961BAE3AAA00DE22DA /* ViewController.swift */; };
+		D8CE179A1BAE3AAA00DE22DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CE17981BAE3AAA00DE22DA /* Main.storyboard */; };
+		D8CE179C1BAE3AAB00DE22DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CE179B1BAE3AAB00DE22DA /* Assets.xcassets */; };
+		D8CE179F1BAE3AAB00DE22DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CE179D1BAE3AAB00DE22DA /* LaunchScreen.storyboard */; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -103,6 +108,13 @@
 		D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LightningKitTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CE17841BAE385500DE22DA /* LMDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LMDB.framework; path = Carthage/Build/iOS/LMDB.framework; sourceTree = "<group>"; };
 		D8CE17851BAE385500DE22DA /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		D8CE17921BAE3AAA00DE22DA /* LKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8CE17941BAE3AAA00DE22DA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D8CE17961BAE3AAA00DE22DA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D8CE17991BAE3AAA00DE22DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D8CE179B1BAE3AAB00DE22DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D8CE179E1BAE3AAB00DE22DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D8CE17A01BAE3AAB00DE22DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8EF54D31BAD1331007EF9DA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +155,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8CE178F1BAE3AAA00DE22DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -162,6 +181,7 @@
 			children = (
 				D87666521B76660D00027E54 /* Source */,
 				D876665F1B76660D00027E54 /* Tests */,
+				D8CE17931BAE3AAA00DE22DA /* Demo */,
 				D87666511B76660D00027E54 /* Products */,
 				D80792981B799A89002D424A /* Frameworks */,
 			);
@@ -174,6 +194,7 @@
 				D8CE174C1BAE2E7A00DE22DA /* LightningKitTests-Mac.xctest */,
 				D8CE17631BAE375F00DE22DA /* LightningKit.framework */,
 				D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */,
+				D8CE17921BAE3AAA00DE22DA /* LKDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +223,19 @@
 				D87666621B76660D00027E54 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		D8CE17931BAE3AAA00DE22DA /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				D8CE17941BAE3AAA00DE22DA /* AppDelegate.swift */,
+				D8CE17961BAE3AAA00DE22DA /* ViewController.swift */,
+				D8CE17981BAE3AAA00DE22DA /* Main.storyboard */,
+				D8CE179B1BAE3AAB00DE22DA /* Assets.xcassets */,
+				D8CE179D1BAE3AAB00DE22DA /* LaunchScreen.storyboard */,
+				D8CE17A01BAE3AAB00DE22DA /* Info.plist */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +332,23 @@
 			productReference = D8CE176C1BAE375F00DE22DA /* LightningKitTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D8CE17911BAE3AAA00DE22DA /* LKDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D8CE17A11BAE3AAB00DE22DA /* Build configuration list for PBXNativeTarget "LKDemo" */;
+			buildPhases = (
+				D8CE178E1BAE3AAA00DE22DA /* Sources */,
+				D8CE178F1BAE3AAA00DE22DA /* Frameworks */,
+				D8CE17901BAE3AAA00DE22DA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LKDemo;
+			productName = LKDemo;
+			productReference = D8CE17921BAE3AAA00DE22DA /* LKDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -320,6 +371,9 @@
 					D8CE176B1BAE375F00DE22DA = {
 						CreatedOnToolsVersion = 7.0;
 					};
+					D8CE17911BAE3AAA00DE22DA = {
+						CreatedOnToolsVersion = 7.0;
+					};
 				};
 			};
 			buildConfigurationList = D876664A1B76660D00027E54 /* Build configuration list for PBXProject "LightningKit" */;
@@ -328,6 +382,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D87666461B76660D00027E54;
 			productRefGroup = D87666511B76660D00027E54 /* Products */;
@@ -338,6 +393,7 @@
 				D8CE174B1BAE2E7A00DE22DA /* LightningKitTests-Mac */,
 				D8CE17621BAE375F00DE22DA /* LightningKit-iOS */,
 				D8CE176B1BAE375F00DE22DA /* LightningKitTests-iOS */,
+				D8CE17911BAE3AAA00DE22DA /* LKDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -354,6 +410,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17901BAE3AAA00DE22DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE179F1BAE3AAB00DE22DA /* LaunchScreen.storyboard in Resources */,
+				D8CE179C1BAE3AAB00DE22DA /* Assets.xcassets in Resources */,
+				D8CE179A1BAE3AAA00DE22DA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +472,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D8CE178E1BAE3AAA00DE22DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8CE17971BAE3AAA00DE22DA /* ViewController.swift in Sources */,
+				D8CE17951BAE3AAA00DE22DA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -420,6 +495,25 @@
 			targetProxy = D8CE176E1BAE376000DE22DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D8CE17981BAE3AAA00DE22DA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8CE17991BAE3AAA00DE22DA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D8CE179D1BAE3AAB00DE22DA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D8CE179E1BAE3AAB00DE22DA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D87666631B76660D00027E54 /* Debug */ = {
@@ -677,6 +771,38 @@
 			};
 			name = Release;
 		};
+		D8CE17A21BAE3AAB00DE22DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D8CE17A31BAE3AAB00DE22DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = me.neilpa.LKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -720,6 +846,14 @@
 			buildConfigurations = (
 				D8CE17761BAE376000DE22DA /* Debug */,
 				D8CE17771BAE376000DE22DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D8CE17A11BAE3AAB00DE22DA /* Build configuration list for PBXNativeTarget "LKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D8CE17A21BAE3AAB00DE22DA /* Debug */,
+				D8CE17A31BAE3AAB00DE22DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
