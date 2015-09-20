@@ -17,7 +17,7 @@ public struct Database {
     }
 
     /// Open a named database in the given transaction.
-    internal static func open(txn: Transaction, name: String) -> Result<Database, LightningError> {
+    public static func open(txn: Transaction, name: String) -> Result<Database, LightningError> {
         return lmdbTry(txn.handle, name, 0, mdb_dbi_open).map(self.init)
     }
 

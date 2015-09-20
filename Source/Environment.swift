@@ -20,14 +20,12 @@ public final class Environment {
         }
 
         return lmdbTry(mdb_env_create).flatMap { handle in
-            lmdbTry(mdb_env_open(handle, path, 0, 0o600)).flatMap {
+            lmdbTry(mdb_env_open(handle, path, 0, 0o600)).flatMap { _ in
                 // Transaction.query
                 return query(handle) { txn in
                     return lmdbTry(txn, nil, 0, mdb_dbi_open)
                 }
-                .map { dbi in
-                    self.init(handle: handle, dbi: dbi)
-                }
+                .map { Environment(handle: handle, dbi: $0) }
                 .on(failure: { _ in mdb_env_close(handle) })
             }
         }
