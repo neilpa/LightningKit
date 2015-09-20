@@ -8,19 +8,13 @@ import Result
 
 /// Opaque wrapper for an LMDB transaction.
 public final class Transaction {
-    internal let handle: COpaquePointer
-    internal let dbi: MDB_dbi
-
     /// Start a new transaction in the given `environment`.
     public static func begin(env: Environment, parent: Transaction? = nil, writeable: Bool = false, db: Database? = nil) -> Result<Transaction, LightningError> {
-        let flags = writeable ? 0 : UInt32(MDB_RDONLY)
-        return begin(env.handle, parent?.handle ?? nil, flags, db?.dbi ?? env.db.dbi)
-    }
-
-    internal static func begin(envHandle: COpaquePointer, _ parentHandle: COpaquePointer, _ flags: UInt32, _ dbi: MDB_dbi) -> Result<Transaction, LightningError> {
         var handle: COpaquePointer = nil
-        return mdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle))
-            .map { _ in Transaction(handle: handle, dbi: dbi) }
+        let flags = writeable ? 0 : UInt32(MDB_RDONLY)
+
+        return mdbTry(mdb_txn_begin(env.handle, parent?.handle ?? nil, flags, &handle))
+            .map { _ in Transaction(handle: handle, env: env, db: db) }
     }
 
     /// Commits changes executed during this transaction.
@@ -39,7 +33,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val(buffer: data)
 
-        return mdbTry(mdb_put(handle, dbi, &keyVal, &dataVal, 0))
+        return mdbTry(mdb_put(handle, db.dbi, &keyVal, &dataVal, 0))
     }
 
     /// Retuns the data associated with the provided `key`. This is a wrapper for `mdb_get`.
@@ -48,7 +42,7 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
         var dataVal = MDB_val()
 
-        return mdbTry(mdb_get(handle, dbi, &keyVal, &dataVal)).map { _ in
+        return mdbTry(mdb_get(handle, db.dbi, &keyVal, &dataVal)).map { _ in
             let data = unsafeBitCast(dataVal.mv_data, UnsafePointer<UInt8>.self)
             return ByteBuffer(start: data, count: dataVal.mv_size)
         }
@@ -59,15 +53,21 @@ public final class Transaction {
         var keyVal = MDB_val(buffer: key)
 
         // TODO Support for duplicates (MDB_SORTDUP)
-        return mdbTry(mdb_del(handle, dbi, &keyVal, nil))
+        return mdbTry(mdb_del(handle, db.dbi, &keyVal, nil))
     }
 
-    private init(handle: COpaquePointer, dbi: MDB_dbi) {
+    /// The environment owning this transaction.
+    public let env: Environment
+
+    /// The default database to perform operations against.
+    public let db: Database
+
+    /// The handle to the underlying transaction.
+    internal let handle: COpaquePointer
+
+    private init(handle: COpaquePointer, env: Environment, db: Database?) {
         self.handle = handle
-        self.dbi = dbi
-    }
-
-    deinit {
-        // TODO?
+        self.env = env
+        self.db = db ?? env.db
     }
 }

@@ -20,18 +20,17 @@ class ViewController: UICollectionViewController {
 
         let path = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0]
 
-        guard case let .Success(env) = Environment.open(path) else {
-            return nil
+        let result = Environment.open(path).flatMap { env in
+            return Transaction.begin(env).flatMap { txn in
+                .Success(txn)
+            }
+            .map { _ in env }
         }
 
+        guard case let .Success(env) = result else {
+            return nil
+        }
         store = Store(env: env)
-        items = Array(count: env.stat().ms_entries, repeatedValue: ("", ""))
-
-        let item = ("key3", "data3")
-        print("putting \(item)")
-
-        items.append(item)
-        print("result \(store.put(item))")
     }
 
     override func viewDidLoad() {

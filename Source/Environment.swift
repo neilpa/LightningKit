@@ -52,15 +52,15 @@ public final class Environment {
         return info
     }
 
+    /// The root (e.g. unnamed) database for this enviroment.
+    public var db: Database!
+
     /// The LMDB environment handle.
     internal let handle: COpaquePointer
 
-    /// The root (e.g. unamed) database for this enviroment.
-    internal let db: Database
-
     private init(handle: COpaquePointer, dbi: MDB_dbi) {
         self.handle = handle
-        db = Database(dbi: dbi)
+        db = Database(dbi: dbi, env: self)
     }
 
     deinit {

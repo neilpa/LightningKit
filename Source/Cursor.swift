@@ -8,14 +8,13 @@ import Result
 
 /// Opaque wrapper for an LMDB database cursor.
 public final class Cursor {
-    /// The handle to the cursor
-    internal let handle: COpaquePointer
-
     /// Open a cursor to operate against the database.
     public static func open(txn: Transaction, db: Database? = nil) -> Result<Cursor, LightningError> {
         var handle: COpaquePointer = nil
-        return mdbTry(mdb_cursor_open(txn.handle, db?.dbi ?? txn.dbi, &handle))
-            .map { _ in self.init(handle: handle) }
+        let db = db ?? txn.db
+
+        return mdbTry(mdb_cursor_open(txn.handle, db.dbi, &handle))
+            .map { _ in self.init(handle: handle, txn: txn, db: db) }
     }
 
     /// Position the cursor at the next key. Equivalent `mdb_cursor_get(MDB_NEXT).`
@@ -43,12 +42,19 @@ public final class Cursor {
             .map { _ in (_key.buffer, _data.buffer) }
     }
 
-    private init(handle: COpaquePointer) {
-        self.handle = handle
-    }
+    /// The transaction owning this cursor
+    public let txn: Transaction
 
-    deinit {
-        // TODO?
+    /// The database the cursor targets
+    public let db: Database
+
+    /// The handle to the cursor
+    internal let handle: COpaquePointer
+
+    private init(handle: COpaquePointer, txn: Transaction, db: Database) {
+        self.handle = handle
+        self.txn = txn
+        self.db = db
     }
 
     private var _key = MDB_val()
