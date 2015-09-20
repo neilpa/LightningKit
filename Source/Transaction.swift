@@ -9,13 +9,24 @@ import Result
 /// Opaque wrapper for an LMDB transaction.
 public final class Transaction {
     internal let handle: COpaquePointer
+    internal let env: Environment
 
     /// Start a new transaction in the given `environment`.
-    public static func begin(environment: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, LightningError> {
+    public static func begin(env: Environment, writeable: Bool = false, parent: Transaction? = nil) -> Result<Transaction, LightningError> {
         let flags = writeable ? 0 : UInt32(MDB_RDONLY)
-        return lmdbTry(environment.handle, parent?.handle ?? nil, flags, mdb_txn_begin).map(self.init)
+        return lmdbTry(env.handle, parent?.handle ?? nil, flags, mdb_txn_begin).map {
+            return self.init(env: env, handle: $0)
+        }
     }
 
+    public func cursor() -> Result<Cursor, LightningError> {
+        return Database.open(self).flatMap {
+            return Cursor.open($0)
+        }
+//        return Cursor.open()
+//        mdb_cursor_open
+    }
+    
     /// Commits changes executed during this transaction.
     public func commit() -> Result<(), LightningError> {
         let err = mdb_txn_commit(handle)
@@ -31,7 +42,8 @@ public final class Transaction {
         mdb_txn_abort(handle)
     }
 
-    private init(handle: COpaquePointer) {
+    private init(env: Environment, handle: COpaquePointer) {
+        self.env = env
         self.handle = handle
     }
 

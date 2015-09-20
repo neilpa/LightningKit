@@ -43,6 +43,12 @@
 		D8CE179A1BAE3AAA00DE22DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CE17981BAE3AAA00DE22DA /* Main.storyboard */; };
 		D8CE179C1BAE3AAB00DE22DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8CE179B1BAE3AAB00DE22DA /* Assets.xcassets */; };
 		D8CE179F1BAE3AAB00DE22DA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D8CE179D1BAE3AAB00DE22DA /* LaunchScreen.storyboard */; };
+		D8CE17A41BAE3CF000DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17631BAE375F00DE22DA /* LightningKit.framework */; };
+		D8CE17A51BAE3CF000DE22DA /* LightningKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17631BAE375F00DE22DA /* LightningKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8CE17A91BAE3CFB00DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
+		D8CE17AA1BAE3CFB00DE22DA /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8CE17AB1BAE3D1700DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
+		D8CE17AC1BAE3D1700DE22DA /* LMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -60,6 +66,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = D8CE17621BAE375F00DE22DA;
 			remoteInfo = LightningKit;
+		};
+		D8CE17A61BAE3CF000DE22DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D87666471B76660D00027E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D8CE17621BAE375F00DE22DA;
+			remoteInfo = "LightningKit-iOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -84,6 +97,19 @@
 				D8CE178B1BAE387600DE22DA /* LMDB.framework in CopyFiles */,
 				D8CE178C1BAE387600DE22DA /* Result.framework in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8CE17A81BAE3CF100DE22DA /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D8CE17A51BAE3CF000DE22DA /* LightningKit.framework in Embed Frameworks */,
+				D8CE17AA1BAE3CFB00DE22DA /* Result.framework in Embed Frameworks */,
+				D8CE17AC1BAE3D1700DE22DA /* LMDB.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -159,6 +185,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8CE17A41BAE3CF000DE22DA /* LightningKit.framework in Frameworks */,
+				D8CE17A91BAE3CFB00DE22DA /* Result.framework in Frameworks */,
+				D8CE17AB1BAE3D1700DE22DA /* LMDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,10 +368,12 @@
 				D8CE178E1BAE3AAA00DE22DA /* Sources */,
 				D8CE178F1BAE3AAA00DE22DA /* Frameworks */,
 				D8CE17901BAE3AAA00DE22DA /* Resources */,
+				D8CE17A81BAE3CF100DE22DA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D8CE17A71BAE3CF000DE22DA /* PBXTargetDependency */,
 			);
 			name = LKDemo;
 			productName = LKDemo;
@@ -493,6 +524,11 @@
 			isa = PBXTargetDependency;
 			target = D8CE17621BAE375F00DE22DA /* LightningKit-iOS */;
 			targetProxy = D8CE176E1BAE376000DE22DA /* PBXContainerItemProxy */;
+		};
+		D8CE17A71BAE3CF000DE22DA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D8CE17621BAE375F00DE22DA /* LightningKit-iOS */;
+			targetProxy = D8CE17A61BAE3CF000DE22DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -776,6 +812,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -792,6 +833,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

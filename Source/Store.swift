@@ -15,6 +15,21 @@ public final class Store {
         self.env = env
     }
 
+    public func dump() -> Result<[(String, String)], LightningError> {
+        return Environment.query(env.handle) { txn in
+            let values: [(String, String)] = []
+            return .Success(values)
+        }
+//        return Transaction.begin(env)
+//            .flatMap { txn in
+//                return txn.cursor()
+//            }
+//            .flatMap {
+//            }
+//
+//        return .Success(items)
+    }
+
     /// Get a string from the key/value store
     public func get(key: String) -> Result<String, LightningError> {
         let txn = Transaction.begin(env).value!

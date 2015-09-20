@@ -26,7 +26,7 @@ extension LightningError: CustomStringConvertible {
         case let .FileSystem(error):
             return "[FileSystem] \(error)"
         case let .LMDB(code):
-            return "[LMDB:\(code)] \(mdb_strerror(code))"
+            return "[LMDB:\(code)] \(String(mdb_strerror(code)))"
         case let .Decode(message):
             return "[Decode] \(message)"
         case let .Unknown(error):
