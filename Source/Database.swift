@@ -13,12 +13,14 @@ public struct Database {
 
     /// Open the default database
     public static func open(txn: Transaction) -> Result<Database, LightningError> {
-        return lmdbTry(txn.handle, nil, 0, mdb_dbi_open).map(self.init)
+        var dbi = MDB_dbi()
+        return lmdbTry(mdb_dbi_open(txn.handle, nil, 0, &dbi), dbi).map(self.init)
     }
 
     /// Open a named database in the given transaction.
     public static func open(txn: Transaction, name: String) -> Result<Database, LightningError> {
-        return lmdbTry(txn.handle, name, 0, mdb_dbi_open).map(self.init)
+        var dbi = MDB_dbi()
+        return lmdbTry(mdb_dbi_open(txn.handle, name, 0, &dbi), dbi).map(self.init)
     }
 
     internal init(dbi: MDB_dbi) {

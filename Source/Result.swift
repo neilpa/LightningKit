@@ -50,26 +50,6 @@ internal extension Result {
     }
 }
 
-internal func lmdbTry(fn: UnsafeMutablePointer<COpaquePointer> -> Int32) -> Result<COpaquePointer, LightningError> {
-    var p: COpaquePointer = nil
-    return lmdbTry(fn(&p), p)
-}
-
-internal func lmdbTry<A, B>(a: A, _ b: B, _ fn: (A, B, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, LightningError> {
-    var p: COpaquePointer = nil
-    return lmdbTry(fn(a, b, &p), p)
-}
-
-internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<COpaquePointer>) -> Int32) -> Result<COpaquePointer, LightningError> {
-    var p: COpaquePointer = nil
-    return lmdbTry(fn(a, b, c, &p), p)
-}
-
-internal func lmdbTry<A, B, C>(a: A, _ b: B, _ c: C, _ fn: (A, B, C, UnsafeMutablePointer<MDB_dbi>) -> Int32) -> Result<MDB_dbi, LightningError> {
-    var dbi = MDB_dbi()
-    return lmdbTry(fn(a, b, c, &dbi), dbi)
-}
-
 internal func lmdbTry<T>(errorCode: Int32, @autoclosure _ value: () -> T) -> Result<T, LightningError> {
     guard errorCode == 0 else { return .lmdbError(errorCode) }
     return .Success(value())

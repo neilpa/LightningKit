@@ -24,7 +24,8 @@ public final class Environment {
             lmdbTry(mdb_env_open(handle, path, 0, 0o600), handle).flatMap { _ in
                 // Transaction.query
                 return query(handle) { txn in
-                    return lmdbTry(txn, nil, 0, mdb_dbi_open)
+                    var dbi = MDB_dbi()
+                    return lmdbTry(mdb_dbi_open(txn, nil, 0, &dbi), dbi)
                 }
                 .map { Environment(handle: handle, dbi: $0) }
                 .on(failure: { _ in mdb_env_close(handle) })
@@ -35,7 +36,8 @@ public final class Environment {
     /// Opens a read-only transaction for querying the database. If `fn` succeeds the
     /// transaction will be committed, otherwise it's aborted.
     internal static func query<T>(env: COpaquePointer, fn: COpaquePointer -> Result<T, LightningError>) -> Result<T, LightningError> {
-        return lmdbTry(env, nil, UInt32(MDB_RDONLY), mdb_txn_begin)
+        var txnHandle: COpaquePointer = nil
+        return lmdbTry(mdb_txn_begin(env, nil, UInt32(MDB_RDONLY), &txnHandle), txnHandle)
             .transact(fn,
                 commit: {
                     return lmdbTry(mdb_txn_commit($0), ()).error

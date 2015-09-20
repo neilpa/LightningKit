@@ -18,7 +18,8 @@ public final class Transaction {
     }
 
     internal static func begin(envHandle: COpaquePointer, _ parentHandle: COpaquePointer, _ flags: UInt32, _ dbi: MDB_dbi) -> Result<Transaction, LightningError> {
-        return lmdbTry(envHandle, parentHandle, flags, mdb_txn_begin).map {
+        var handle: COpaquePointer = nil
+        return lmdbTry(mdb_txn_begin(envHandle, parentHandle, flags, &handle), handle).map {
             return Transaction(handle: $0, dbi: dbi)
         }
     }
