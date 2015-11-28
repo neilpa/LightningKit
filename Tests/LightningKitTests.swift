@@ -32,15 +32,11 @@ class LightningKitTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case let .Success(dbi) = Database.open(txn) else {
-                XCTAssert(false)
-                return
-            }
             "qwer".withCString { qwer in
             "fdsa".withCString { fdsa in
                 let qwerB = ByteBuffer(start: unsafeBitCast(qwer, UnsafePointer<UInt8>.self), count: "qwer".utf8.count + 1)
                 let fdsaB = ByteBuffer(start: unsafeBitCast(fdsa, UnsafePointer<UInt8>.self), count: "fdsa".utf8.count + 1)
-                guard case .Success = dbi.put(key: qwerB, data: fdsaB) else {
+                guard case .Success = txn.put(key: qwerB, data: fdsaB) else {
                     XCTAssert(false)
                     return
                 }
@@ -57,13 +53,9 @@ class LightningKitTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case let .Success(dbi) = Database.open(txn) else {
-                XCTAssert(false)
-                return
-            }
             "qwer".withCString { qwer in
                 let qwerB = ByteBuffer(start: unsafeBitCast(qwer, UnsafePointer<UInt8>.self), count: "qwer".utf8.count + 1)
-                guard case let .Success(value) = dbi.get(qwerB),
+                guard case let .Success(value) = txn.get(qwerB),
                     let str = String(UTF8String: unsafeBitCast(value.baseAddress, UnsafePointer<Int8>.self))
                     where str == "fdsa" else {
                     XCTAssert(false)
@@ -81,11 +73,7 @@ class LightningKitTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            guard case let .Success(dbi) = Database.open(txn) else {
-                XCTAssert(false)
-                return
-            }
-            guard case let .Success(cursor) = Cursor.open(dbi) else {
+            guard case let .Success(cursor) = Cursor.open(txn) else {
                 XCTAssert(false)
                 return
             }
