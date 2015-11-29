@@ -10,29 +10,29 @@
 		D80792941B799A41002D424A /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D826D98C1B79C75900BC6D32 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
 		D87666561B76660D00027E54 /* LightningKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* LightningKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8A0CB3B1BA6406C00D43E17 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
-		D8A0CB3F1BA6502400D43E17 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; settings = {ASSET_TAGS = (); }; };
-		D8A0CB411BA653E400D43E17 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; settings = {ASSET_TAGS = (); }; };
-		D8A0CB451BA683E300D43E17 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE16F71BADD6DC00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE16F91BADDDF700DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
+		D8A0CB3B1BA6406C00D43E17 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; };
+		D8A0CB3F1BA6502400D43E17 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; };
+		D8A0CB411BA653E400D43E17 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; };
+		D8A0CB451BA683E300D43E17 /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; };
+		D8CE16F71BADD6DC00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; };
+		D8CE16F91BADDDF700DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; };
 		D8CE17351BAE256B00DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
-		D8CE17511BAE2E7A00DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* LightningKit.framework */; settings = {ASSET_TAGS = (); }; };
-		D8CE17571BAE2E8800DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE17511BAE2E7A00DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D87666501B76660D00027E54 /* LightningKit.framework */; };
+		D8CE17571BAE2E8800DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; };
 		D8CE175B1BAE2EE000DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17341BAE256B00DE22DA /* LMDB.framework */; };
 		D8CE175C1BAE2EE000DE22DA /* Result.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
 		D8CE175D1BAE2F8900DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D80792921B799A41002D424A /* Result.framework */; };
-		D8CE176D1BAE376000DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17631BAE375F00DE22DA /* LightningKit.framework */; settings = {ASSET_TAGS = (); }; };
-		D8CE177A1BAE379C00DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE176D1BAE376000DE22DA /* LightningKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17631BAE375F00DE22DA /* LightningKit.framework */; };
+		D8CE177A1BAE379C00DE22DA /* LightningKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D9891B79C3A100BC6D32 /* LightningKitTests.swift */; };
 		D8CE177B1BAE37A300DE22DA /* LightningKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D87666551B76660D00027E54 /* LightningKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8CE177C1BAE37AA00DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE177D1BAE37AA00DE22DA /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE177E1BAE37AA00DE22DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE177F1BAE37AA00DE22DA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE17801BAE37AA00DE22DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE17811BAE37AA00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE17821BAE37AA00DE22DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
-		D8CE17831BAE37AA00DE22DA /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; settings = {ASSET_TAGS = (); }; };
+		D8CE177C1BAE37AA00DE22DA /* ByteBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F81BADDDF700DE22DA /* ByteBuffer.swift */; };
+		D8CE177D1BAE37AA00DE22DA /* Cursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB441BA683E300D43E17 /* Cursor.swift */; };
+		D8CE177E1BAE37AA00DE22DA /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB401BA653E400D43E17 /* Database.swift */; };
+		D8CE177F1BAE37AA00DE22DA /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3A1BA6406C00D43E17 /* Environment.swift */; };
+		D8CE17801BAE37AA00DE22DA /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = D826D98B1B79C75900BC6D32 /* Error.swift */; };
+		D8CE17811BAE37AA00DE22DA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8CE16F61BADD6DC00DE22DA /* Result.swift */; };
+		D8CE17821BAE37AA00DE22DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; };
+		D8CE17831BAE37AA00DE22DA /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0CB3E1BA6502400D43E17 /* Transaction.swift */; };
 		D8CE17861BAE385500DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
 		D8CE17871BAE385500DE22DA /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; };
 		D8CE178B1BAE387600DE22DA /* LMDB.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
@@ -49,7 +49,7 @@
 		D8CE17AA1BAE3CFB00DE22DA /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17851BAE385500DE22DA /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8CE17AB1BAE3D1700DE22DA /* LMDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; };
 		D8CE17AC1BAE3D1700DE22DA /* LMDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CE17841BAE385500DE22DA /* LMDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; settings = {ASSET_TAGS = (); }; };
+		D8EF54D41BAD1331007EF9DA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF54D31BAD1331007EF9DA /* Store.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -387,7 +387,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Neil Pankey";
 				TargetAttributes = {
 					D876664F1B76660D00027E54 = {
@@ -658,6 +658,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/lmdb/0.9.14/lib,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.neilpa.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -685,6 +686,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/lmdb/0.9.14/lib,
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "me.neilpa.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(PROJECT_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -886,6 +888,7 @@
 				D8CE17751BAE376000DE22DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8CE17791BAE376000DE22DA /* Build configuration list for PBXNativeTarget "LightningKitTests-iOS" */ = {
 			isa = XCConfigurationList;
@@ -894,6 +897,7 @@
 				D8CE17771BAE376000DE22DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8CE17A11BAE3AAB00DE22DA /* Build configuration list for PBXNativeTarget "LKDemo" */ = {
 			isa = XCConfigurationList;
@@ -902,6 +906,7 @@
 				D8CE17A31BAE3AAB00DE22DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
