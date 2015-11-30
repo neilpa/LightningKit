@@ -26,5 +26,5 @@ internal extension Result {
 }
 
 internal func mdbTry(errorCode: Int32) -> Result<(), LightningError> {
-    return errorCode == 0 ? .Success() : .Failure(.LMDB(errorCode))
+    return errorCode == MDB_SUCCESS ? .Success() : .Failure(.LMDB(errorCode))
 }
