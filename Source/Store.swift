@@ -27,7 +27,7 @@ public final class Store {
         let txn = Transaction.begin(env).value!
         defer { txn.commit() }
 
-        return key.withUnsafeBufferPointer { keyBuffer in
+        return key.withByteBuffer { keyBuffer in
             let value: ByteBuffer = txn.get(keyBuffer).value!
             let string = String(bytes: value, encoding: NSUTF8StringEncoding)
             return string.map(Result.Success) ?? .Failure(.Decode(""))
@@ -39,17 +39,15 @@ public final class Store {
         let txn = Transaction.begin(env, writeable: true).value!
         defer { txn.commit() }
 
-        return key.withUnsafeBufferPointer { keyBuffer in
-        return value.withUnsafeBufferPointer { valueBuffer in
+        return key.withByteBuffer { keyBuffer in
+        return value.withByteBuffer { valueBuffer in
             return txn.put(key: keyBuffer, data: valueBuffer)
         } }
     }
 }
 
 internal extension String {
-    internal func withUnsafeBufferPointer<T>(f: UnsafeBufferPointer<UInt8> -> T) -> T {
-        return withCString {
-            return f(ByteBuffer(start: unsafeBitCast($0, UnsafePointer<UInt8>.self), count: utf8.count))
-        }
+    internal func withByteBuffer<T>(f: ByteBuffer -> T) -> T {
+        return nulTerminatedUTF8.withUnsafeBufferPointer(f)
     }
 }

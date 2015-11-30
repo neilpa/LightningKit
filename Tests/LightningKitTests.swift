@@ -32,11 +32,9 @@ class LightningKitTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            "qwer".withCString { qwer in
-            "fdsa".withCString { fdsa in
-                let qwerB = ByteBuffer(start: unsafeBitCast(qwer, UnsafePointer<UInt8>.self), count: "qwer".utf8.count + 1)
-                let fdsaB = ByteBuffer(start: unsafeBitCast(fdsa, UnsafePointer<UInt8>.self), count: "fdsa".utf8.count + 1)
-                guard case .Success = txn.put(key: qwerB, data: fdsaB) else {
+            "qwer".withByteBuffer { qwer in
+            "fdsa".withByteBuffer { fdsa in
+                guard case .Success = txn.put(key: qwer, data: fdsa) else {
                     XCTAssert(false)
                     return
                 }
@@ -53,9 +51,8 @@ class LightningKitTests: XCTestCase {
                 XCTAssert(false)
                 return
             }
-            "qwer".withCString { qwer in
-                let qwerB = ByteBuffer(start: unsafeBitCast(qwer, UnsafePointer<UInt8>.self), count: "qwer".utf8.count + 1)
-                guard case let .Success(value) = txn.get(qwerB),
+            "qwer".withByteBuffer { qwer in
+                guard case let .Success(value) = txn.get(qwer),
                     let str = String(UTF8String: unsafeBitCast(value.baseAddress, UnsafePointer<Int8>.self))
                     where str == "fdsa" else {
                     XCTAssert(false)
